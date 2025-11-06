@@ -24,24 +24,24 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-green-50 text-steel-gray border-b border-sky-gray sticky top-0 z-50">
-      <div className="container mx-auto px-6 py-2">
+    <header className="bg-warm-white/95 backdrop-blur-lg text-steel-gray border-b border-soft-green/25 sticky top-0 z-50 shadow-lg shadow-soft-green/10 animate-fade-in">
+      <div className="container mx-auto px-6 py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
           {/* <div className="flex items-center space-x-3"> */}
 
           <div className="flex items-center justify-between relative">
-            <Link to="/" className="flex items-center space-x-3">
-              <div className="w-12 h-12 rounded-lg overflow-hidden border border-soft-green/30">
+            <Link to="/" className="flex items-center space-x-4 group">
+              <div className="w-14 h-14 rounded-xl overflow-hidden border-2 border-soft-green/40 shadow-lg group-hover:shadow-soft-green/30 transition-all duration-300 group-hover:scale-105">
                 <img 
                   src={logoImage} 
                   alt="Dreieich Pflege Logo" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                 />
               </div>
               <div>
-                <span className="text-xl font-bold text-steel-gray">Dreieich Pflege</span>
-                <div className="text-steel-gray/70 text-xs">Menschliche Pflege mit Herz</div>
+                <span className="text-2xl font-bold bg-gradient-to-r from-steel-gray to-soft-green bg-clip-text text-transparent">Dreieich Pflege</span>
+                <div className="text-steel-gray/70 text-sm font-medium">Menschliche Pflege mit Herz</div>
               </div>
             </Link>
           </div>
@@ -102,7 +102,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-sky-gray">
+          <div className="md:hidden mt-4 pb-4 border-t border-soft-green/20">
             <nav className="flex flex-col space-y-4 mt-4">
               <Link 
                 to="/" 
@@ -139,7 +139,7 @@ const Header = () => {
               >
                 Kontakt
               </Link>
-              <div className="pt-4 border-t border-sky-gray">
+              <div className="pt-4 border-t border-soft-green/20">
                 <div className="flex items-center space-x-2 text-sm text-steel-gray/70 mb-4">
                   <Phone className="w-4 h-4" />
                   <span>06103 - 802 57 31</span>

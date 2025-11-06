@@ -77,21 +77,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Floating Contact Card */}
-      <div className="absolute bottom-8 right-8 hidden lg:block animate-float">
-        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 shadow-hero">
-          <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 bg-gradient-to-br from-coral-red to-coral-red/80 rounded-full flex items-center justify-center">
-              <Phone className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <div className="text-white font-semibold">Sofort erreichbar</div>
-              <div className="text-gray-300 text-sm">24/7 für Sie da</div>
-              <div className="text-coral-red font-bold">06103 123-456</div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
