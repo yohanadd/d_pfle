@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail, Phone,  MapPin, User, Building } from "lucide-react";
+import { Mail, Phone, MapPin, User, Building } from "lucide-react";
 
 const ImprintPage = () => {
   return (
@@ -9,99 +9,101 @@ const ImprintPage = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="py-16 bg-gradient-to-br from-trust-green to-trust-green/90 text-white">
-        <div className="container mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Impressum</h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto">
+      <section className="py-12 md:py-16 bg-gradient-to-br from-trust-green to-trust-green/90 text-white">
+        <div className="container mx-auto px-4 sm:px-6 text-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 px-2">
+            Impressum
+          </h1>
+          <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto px-4">
             Rechtliche Informationen und Kontaktdaten der Pflegedienst 3eich GmbH
           </p>
         </div>
       </section>
 
       {/* Content Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-6">
+      <section className="py-12 md:py-16 bg-white">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
             {/* Company Information */}
-            <Card className="mb-12 border-trust-green/20 shadow-lg">
-              <CardHeader className="bg-gradient-to-r from-trust-green/5 to-trust-green/10">
-                <CardTitle className="text-2xl font-bold text-gray-900 flex items-center">
-                  <Building className="w-6 h-6 mr-3 text-trust-green" />
+            <Card className="mb-8 md:mb-12 border-trust-green/20 shadow-lg">
+              <CardHeader className="bg-gradient-to-r from-trust-green/5 to-trust-green/10 p-4 sm:p-6">
+                <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900 flex items-center">
+                  <Building className="w-5 h-5 sm:w-6 sm:h-6 mr-3 text-trust-green flex-shrink-0" />
                   Unternehmensinformationen
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-6 space-y-6">
+              <CardContent className="p-4 sm:p-6 space-y-4 sm:space-y-6">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Verantwortlich:</h3>
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Verantwortlich:</h3>
                   
-                  <div className="space-y-4">
-                    <div className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
-                      <User className="w-5 h-5 text-trust-green mt-1" />
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="flex items-start space-x-3 p-3 sm:p-4 bg-gray-50 rounded-lg">
+                      <User className="w-4 h-4 sm:w-5 sm:h-5 text-trust-green mt-1 flex-shrink-0" />
                       <div>
-                        <h4 className="font-semibold text-gray-900">Geschäftsführerin und Pflegedienstleiterin:</h4>
-                        <p className="text-gray-700">Magdalena Glowa - Examinierte Altenpflegerin</p>
+                        <h4 className="font-semibold text-gray-900 text-sm sm:text-base">Geschäftsführerin und Pflegedienstleiterin:</h4>
+                        <p className="text-gray-700 text-sm sm:text-base">Magdalena Glowa - Examinierte Altenpflegerin</p>
                       </div>
                     </div>
                     
-                    <div className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
-                      <User className="w-5 h-5 text-trust-green mt-1" />
+                    <div className="flex items-start space-x-3 p-3 sm:p-4 bg-gray-50 rounded-lg">
+                      <User className="w-4 h-4 sm:w-5 sm:h-5 text-trust-green mt-1 flex-shrink-0" />
                       <div>
-                        <h4 className="font-semibold text-gray-900">Geschäftsführerin und stellvertretende Pflegedienstleiterin:</h4>
-                        <p className="text-gray-700">Puneet Kaur Parmar - Krankenschwester</p>
+                        <h4 className="font-semibold text-gray-900 text-sm sm:text-base">Geschäftsführerin und stellvertretende Pflegedienstleiterin:</h4>
+                        <p className="text-gray-700 text-sm sm:text-base">Puneet Kaur Parmar - Krankenschwester</p>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-semibold text-gray-900">Kontakt:</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="space-y-3 sm:space-y-4">
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-900">Kontakt:</h3>
                     
-                    <div className="flex items-center space-x-3">
-                      <Building className="w-5 h-5 text-trust-green" />
+                    <div className="flex items-start space-x-3">
+                      <Building className="w-4 h-4 sm:w-5 sm:h-5 text-trust-green mt-1 flex-shrink-0" />
                       <div>
-                        <div className="font-medium text-gray-900">Pflegedienst 3eich GmbH</div>
-                        <div className="text-gray-700">Freiherr-vom-Stein-Straße 42</div>
-                        <div className="text-gray-700">63303 Dreieich-Sprendlingen</div>
+                        <div className="font-medium text-gray-900 text-sm sm:text-base">Pflegedienst 3eich GmbH</div>
+                        <div className="text-gray-700 text-sm sm:text-base">Freiherr-vom-Stein-Straße 42</div>
+                        <div className="text-gray-700 text-sm sm:text-base">63303 Dreieich-Sprendlingen</div>
                       </div>
                     </div>
                     
                     <div className="flex items-center space-x-3">
-                      <Phone className="w-5 h-5 text-trust-green" />
+                      <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-trust-green flex-shrink-0" />
                       <div>
-                        <div className="font-medium text-gray-900">Telefon:</div>
-                        <div className="text-gray-700">06103-8025731</div>
+                        <div className="font-medium text-gray-900 text-sm sm:text-base">Telefon:</div>
+                        <div className="text-gray-700 text-sm sm:text-base">06103-8025731</div>
                       </div>
                     </div>
                     
                     <div className="flex items-center space-x-3">
-                     
+                      <div className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
                       <div>
-                        <div className="font-medium text-gray-900">Fax:</div>
-                        <div className="text-gray-700">06103-8025734</div>
+                        <div className="font-medium text-gray-900 text-sm sm:text-base">Fax:</div>
+                        <div className="text-gray-700 text-sm sm:text-base">06103-8025734</div>
                       </div>
                     </div>
                     
                     <div className="flex items-center space-x-3">
-                      <Mail className="w-5 h-5 text-trust-green" />
+                      <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-trust-green flex-shrink-0" />
                       <div>
-                        <div className="font-medium text-gray-900">E-mail:</div>
-                        <div className="text-gray-700">pflegedienst.3eich@yahoo.com</div>
+                        <div className="font-medium text-gray-900 text-sm sm:text-base">E-mail:</div>
+                        <div className="text-gray-700 text-sm sm:text-base break-all">pflegedienst.3eich@yahoo.com</div>
                       </div>
                     </div>
                   </div>
                   
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-semibold text-gray-900">Rechtliche Informationen:</h3>
+                  <div className="space-y-3 sm:space-y-4">
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-900">Rechtliche Informationen:</h3>
                     
-                    <div className="p-4 bg-gray-50 rounded-lg">
-                      <div className="font-medium text-gray-900 mb-2">Handelsregisternummer:</div>
-                      <div className="text-gray-700">55045</div>
+                    <div className="p-3 sm:p-4 bg-gray-50 rounded-lg">
+                      <div className="font-medium text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base">Handelsregisternummer:</div>
+                      <div className="text-gray-700 text-sm sm:text-base">55045</div>
                     </div>
                     
-                    <div className="p-4 bg-gray-50 rounded-lg">
-                      <div className="font-medium text-gray-900 mb-2">Rechtsform:</div>
-                      <div className="text-gray-700">Gesellschaft mit beschränkter Haftung (GmbH)</div>
+                    <div className="p-3 sm:p-4 bg-gray-50 rounded-lg">
+                      <div className="font-medium text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base">Rechtsform:</div>
+                      <div className="text-gray-700 text-sm sm:text-base">Gesellschaft mit beschränkter Haftung (GmbH)</div>
                     </div>
                   </div>
                 </div>
@@ -109,18 +111,18 @@ const ImprintPage = () => {
             </Card>
 
             {/* Legal Sections */}
-            <div className="space-y-8">
+            <div className="space-y-6 md:space-y-8">
               {/* Haftungsausschluss */}
               <Card className="border-trust-green/20 shadow-lg">
-                <CardHeader className="bg-gradient-to-r from-trust-green/5 to-trust-green/10">
-                  <CardTitle className="text-2xl font-bold text-gray-900">
+                <CardHeader className="bg-gradient-to-r from-trust-green/5 to-trust-green/10 p-4 sm:p-6">
+                  <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900">
                     Haftungsausschluss (Disclaimer)
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="p-6 space-y-6">
+                <CardContent className="p-4 sm:p-6 space-y-4 sm:space-y-6">
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Haftung für Inhalte</h3>
-                    <div className="text-gray-700 leading-relaxed space-y-3">
+                    <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Haftung für Inhalte</h3>
+                    <div className="text-gray-700 leading-relaxed space-y-2 sm:space-y-3 text-sm sm:text-base">
                       <p>
                         Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten 
                         nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als 
@@ -139,8 +141,8 @@ const ImprintPage = () => {
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Haftung für Links</h3>
-                    <div className="text-gray-700 leading-relaxed space-y-3">
+                    <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Haftung für Links</h3>
+                    <div className="text-gray-700 leading-relaxed space-y-2 sm:space-y-3 text-sm sm:text-base">
                       <p>
                         Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir 
                         keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine 
@@ -159,8 +161,8 @@ const ImprintPage = () => {
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Urheberrecht</h3>
-                    <div className="text-gray-700 leading-relaxed space-y-3">
+                    <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Urheberrecht</h3>
+                    <div className="text-gray-700 leading-relaxed space-y-2 sm:space-y-3 text-sm sm:text-base">
                       <p>
                         Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten 
                         unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, 

@@ -121,7 +121,7 @@ const AboutPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              Unsere Geschichte der Fürsorge
+              Über uns
             </motion.h1>
             <motion.p 
               className="text-lg sm:text-xl md:text-2xl text-white/95 max-w-3xl mx-auto leading-relaxed drop-shadow-md font-medium px-4"
@@ -129,8 +129,8 @@ const AboutPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              Dreieich Pflege ist seit jeher ein Leuchtturm mitfühlender Pflege, 
-              der ein wahres Zuhause schafft, in dem Senioren mit Würde und Freude gedeihen.
+              Unser ambulanter Pflegedienst mit Sitz in Dreieich, bietet seine Dienstleitungen auch in den umliegenden Kommunen an.
+              Hierzu zählen z.B. Neu-Isenburg, Dietzenbach, Langen und Egelsbach.
             </motion.p>
           </div>
         </div>
@@ -391,7 +391,7 @@ const AboutPage = () => {
                 animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8 }}
               >
-                Lernen Sie unsere Pflegefamilie kennen
+                Unser Team
               </motion.h2>
               <motion.p 
                 className="text-base sm:text-lg text-muted-foreground leading-relaxed"
@@ -399,16 +399,53 @@ const AboutPage = () => {
                 animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                Unser Team engagierter Fachkräfte bringt jahrelange Erfahrung, 
-                spezialisierte Ausbildung und echte Leidenschaft für die Seniorenpflege zusammen. 
-                Von unseren lizenzierten Krankenschwestern bis hin zu unseren Aktivitätskoordinatoren 
-                ist jedes Teammitglied darauf bedacht, eine positive, fördernde Umgebung zu schaffen.
+                Unser Team besteht aus Mitarbeiterinnen die langjährig in der Pflege tätig gewesen sind und sich nun selbstständig gemacht haben. Ihre Erfahrung möchten Sie einsetzen, um den Menschen zu helfen. Der Mensch steht dabei im Mittelpunkt.
+              </motion.p>
+              <motion.p 
+                className="text-base sm:text-lg text-muted-foreground leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              >
+                Wir betrachten die Pflege ganzheitlich und nehmen uns Zeit.
+              </motion.p>
+              <motion.p 
+                className="text-base sm:text-lg text-muted-foreground leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                Als Pflegedienst legen wir großen Wert auf Kommunikationskultur, basierend auf gegenseitiger Wertschätzung, Empathie, Respekt und Feedback-Kultur.
+              </motion.p>
+              <motion.p 
+                className="text-base sm:text-lg text-muted-foreground leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              >
+                Wir legen großen Wert auf Qualität und arbeiten nach den Expertenstandards in der Pflege.
+              </motion.p>
+              <motion.p 
+                className="text-base sm:text-lg text-muted-foreground leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                Regelmäßige Fortbildungen unserer Personals zählen auch dazu.
+              </motion.p>
+              <motion.p 
+                className="text-base sm:text-lg text-muted-foreground leading-relaxed font-semibold"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.7 }}
+              >
+                Gerne können Sie uns kennenlernen und sich hiervon ein eigenes Bild machen.
               </motion.p>
               <motion.div 
                 className="grid grid-cols-2 gap-4 sm:gap-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.4 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
               >
                 {[
                   { 
@@ -434,7 +471,7 @@ const AboutPage = () => {
                     }}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={isTeamInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ duration: 0.6, delay: 0.6 + (index * 0.15), ease: "easeOut" }}
+                    transition={{ duration: 0.6, delay: 1.0 + (index * 0.15), ease: "easeOut" }}
                   >
                     <motion.div 
                       className={`w-8 h-8 ${stat.iconBg} rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3`}
@@ -450,7 +487,7 @@ const AboutPage = () => {
                       className="text-xl sm:text-2xl font-bold text-trust-green"
                       initial={{ scale: 0 }}
                       animate={isTeamInView ? { scale: 1 } : {}}
-                      transition={{ duration: 0.6, delay: 0.8 + (index * 0.15), ease: "easeOut" }}
+                      transition={{ duration: 0.6, delay: 1.2 + (index * 0.15), ease: "easeOut" }}
                     >
                       {stat.number}
                     </motion.div>
@@ -461,7 +498,7 @@ const AboutPage = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.6 }}
+                transition={{ duration: 0.8, delay: 1.0 }}
               >
                 {/* <Button 
                   className="bg-gradient-to-r from-trust-green to-trust-green/80 hover:from-trust-green hover:to-trust-green text-white transition-all duration-300 w-full sm:w-auto" 
