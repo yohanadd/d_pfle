@@ -75,14 +75,13 @@ const Hero = () => {
           </p>
 
           {/* Mobile Trust Statement - Hidden on Mobile */}
-          <div className="hidden md:inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20 mb-8">
+          {/* <div className="hidden md:inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20 mb-8">
             <ShieldCheck className="w-4 h-4 text-trust-green" />
             <span className="text-white text-sm font-medium">Vertrauen Sie den Experten</span>
-          </div>
+          </div> */}
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-5 mb-10 md:mb-12 mt-4">
-            {/* Primary Button - Contact Us */}
+          {/* <div className="flex flex-col sm:flex-row gap-5 mb-10 md:mb-12 mt-4">
             <Link to="/contact" className="block">
               <button className="text-base px-10 py-3 rounded-full bg-gradient-to-r from-trust-green to-trust-green/80 border-0 shadow-2xl w-full sm:w-auto hover:scale-105 transition-transform duration-300 group">
                 <span className="flex items-center space-x-3 justify-center">
@@ -94,13 +93,25 @@ const Hero = () => {
                 </span>
               </button>
             </Link>
-
-            {/* Secondary Button - Who We Are - Hidden on Mobile */}
             <Link to="/about" className="hidden md:block">
               <button className="text-base px-10 py-3 backdrop-blur-md rounded-full border-2 border-trust-green shadow-lg !bg-transparent w-full sm:w-auto hover:scale-105 transition-transform duration-300 group">
                 <span className="flex items-center space-x-3 text-white justify-center">
                   <Users className="w-5 h-5 text-white group-hover:scale-110 transition-transform duration-300" />
                   <span className="font-semibold group-hover:tracking-wide transition-all duration-300">Wer wir sind</span>
+                </span>
+              </button>
+            </Link>
+          </div> */}
+
+          <div className="md:hidden flex flex-col sm:flex-row gap-5 mb-10 md:mb-12 mt-4">
+            <Link to="/contact" className="block">
+              <button className="text-base px-10 py-3 rounded-full bg-gradient-to-r from-trust-green to-trust-green/80 border-0 shadow-2xl w-full sm:w-auto hover:scale-105 transition-transform duration-300 group">
+                <span className="flex items-center space-x-3 justify-center">
+                  <Phone className="w-5 h-5 text-white group-hover:scale-110 transition-transform duration-300" />
+                  <span className="font-bold text-white group-hover:tracking-wide transition-all duration-300">
+                    Kontaktieren Sie uns
+                  </span>
+                  <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-300" />
                 </span>
               </button>
             </Link>
