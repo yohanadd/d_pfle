@@ -54,28 +54,56 @@ const services = [
 
 const specialtyServices = [
   {
-    icon: Brain,
-    title: "Gedächtnispflege",
-    description: "Spezialisierte Programme für Bewohner mit Alzheimer und Demenz",
-    features: ["Sichere Umgebung", "Kognitive Therapien", "Familienbildung", "Strukturierte Routinen"]
+    icon: Heart,
+    title: "Hauspflege (SGB XI und XII Bereich)",
+    description: "Leistungen die bei festgestellter Pflegebedürftigkeit von uns und direkt mit den Pflegekassen oder den Sozialämtern abgerechnet werden:",
+    features: [
+      "Große Körperpflege z.B. Baden/Duschen",
+      "Teilwaschung",
+      "Ernährung",
+      "Mobilität",
+      "Hilfestellung bei Ausscheidung",
+      "Hilfe bei der Ernährung",
+      "Einkaufen, Hilfe im Haushalt"
+    ]
   },
   {
-    icon: Dumbbell,
-    title: "Rehabilitationsdienste",
-    description: "Physio- und Ergotherapie zur Erhaltung der Selbstständigkeit",
-    features: ["Physiotherapie", "Ergotherapie", "Logopädie", "Erholungsplaning"]
+    icon: Users,
+    title: "Entlastungsleistungen (§45b SGB XI)",
+    description: "Wir bieten zusätzliche Betreuungsleistungen an z.B.:",
+    features: [
+      "Spaziergänge",
+      "Gespräche",
+      "Vorlesen",
+      "Biographiearbeit",
+      "Begleitung bei Veranstaltungen",
+      "Begleitung bei Arztbesuchen"
+    ]
   },
   {
     icon: Shield,
-    title: "Übergangspflege",
-    description: "Unterstützung für Bewohner, die sich von Krankenhausaufenthalten erholen",
-    features: ["Post-OP-Pflege", "Medikamentenüberwachung", "Erholungsplaning", "Familienkoordination"]
+    title: "Beratungseinsätze (§37 Abs. 3 SGB XI)",
+    description: "Wir führen für Sie Beratungsbesuche bei Geldleistung der Pflegeversicherung durch:",
+    features: [
+      "Vierteljährliche Beratungsbesuche",
+      "Halbjährliche Beratungsbesuche",
+      "Individuelle Pflegeberatung",
+      "Unterstützung bei Anträgen"
+    ]
   },
   {
-    icon: Home,
-    title: "Unterstützung für selbstständiges Leben",
-    description: "Hilfe bei gleichzeitiger Wahrung maximaler Selbstständigkeit",
-    features: ["Haushaltsführung", "Mahlzeitenzubereitung", "Transport", "Soziale Aktivitäten"]
+    icon: Stethoscope,
+    title: "Häusliche Krankenpflege / med. Versorgung (SGB V Bereich)",
+    description: "Medizinische Versorgungsleistungen z.B.:",
+    features: [
+      "Verbandswechsel",
+      "Medikamentengabe",
+      "Medikamente richten",
+      "Insulin Injektion",
+      "Vitalzeichen Kontrolle und Überwachung",
+      "Blutzucker-, Blutdruck-, Pulsmessung",
+      "An- Ausziehen von Kompressionsstrümpfen"
+    ]
   }
 ];
 
@@ -263,7 +291,7 @@ const Services = () => {
               Spezialpflegeprogramme
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4 sm:px-0">
-              Fortgeschrittene Programme, die für spezifische Pflegebedürfnisse und Erholungsziele entwickelt wurden
+              Unsere spezialisierten Pflegeleistungen nach SGB V, XI und XII
             </p>
           </motion.div>
           
@@ -305,7 +333,7 @@ const Services = () => {
                   </CardHeader>
                   <CardContent className="px-4 sm:px-6 pb-6">
                     <p className="text-muted-foreground leading-relaxed mb-3 md:mb-4 text-sm sm:text-base">{service.description}</p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div className="space-y-2">
                       {service.features.map((feature, featureIndex) => (
                         <motion.div 
                           key={featureIndex} 
