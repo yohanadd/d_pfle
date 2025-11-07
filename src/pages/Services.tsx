@@ -3,13 +3,14 @@ import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Heart, Users, Clock, Stethoscope, Utensils, Activity, Shield, Home, Brain, Dumbbell, Music, Palette } from "lucide-react";
-import diningImage from "@/assets/dining.jpg";
-import rehabImage from "@/assets/rehabilitation.jpg";
-import activitiesImage from "@/assets/activities.jpg";
+import diningImage from "@/assets/food.jpeg";
+import rehabImage from "@/assets/therapy.jpeg";
+import activitiesImage from "@/assets/daily_activity.jpeg";
 import outdoor from "@/assets/care-for-the-elderly-6960542_1920.jpg";
 import holdingHand from "@/assets/holdHand.jpg";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const services = [
   {
@@ -61,7 +62,7 @@ const specialtyServices = [
     icon: Dumbbell,
     title: "Rehabilitationsdienste",
     description: "Physio- und Ergotherapie zur Erhaltung der Selbstständigkeit",
-    features: ["Physiotherapie", "Ergotherapie", "Logopädie", "Erholungsplanung"]
+    features: ["Physiotherapie", "Ergotherapie", "Logopädie", "Erholungsplaning"]
   },
   {
     icon: Shield,
@@ -78,6 +79,7 @@ const specialtyServices = [
 ];
 
 const Services = () => {
+  const navigate = useNavigate();
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -102,76 +104,55 @@ const Services = () => {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
+  const handleContactClick = () => {
+    navigate('/contact');
+  };
+
   return (
-    <div className="min-h-screen" ref={containerRef}>
+    <div className="min-h-screen font-montserrat" ref={containerRef}>
       <Header />
       
       {/* Hero Section */}
       <section 
-        // ref={heroRef}
-        // initial={{ opacity: 0, y: 50 }}
-        // animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-        // transition={{ duration: 0.8, ease: "easeOut" }}
         className="py-20 bg-gradient-to-br from-trust-green to-trust-green/90 text-white relative overflow-hidden" 
         style={{
           backgroundImage: `url(${outdoor})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center left',
           backgroundRepeat: 'no-repeat',
-          minHeight: '50vh',
+          minHeight: '46vh',
         }}
       >
-
-      {/* <motion.section 
-          ref={heroRef}
-          initial={{ opacity: 0, y: 50 }}
-          animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="py-20 bg-gradient-to-br from-trust-blue to-trust-blue/90 text-white relative overflow-hidden" 
-          style={{
-            backgroundImage: `url(${outdoor})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center left',
-            backgroundRepeat: 'no-repeat',
-            minHeight: '50vh',
-          }}
-        > */}
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/50"></div>
+        
         <motion.div 
           className="absolute inset-0 bg-trust-green/5"
           style={{ y }}
         ></motion.div>
         <div className="container mx-auto px-6 text-center relative z-10 flex items-center justify-center py-20">
-          {/* <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isHeroInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-          > */}
           <div>
-            {/* <motion.h1 
-              className="text-5xl md:text-6xl font-bold mb-6"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            > */}
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
-              Umfassende Pflegedienste
-              </h1>
-            {/* </motion.h1> */}
-            <motion.p 
-              className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed"
+            <motion.h1 
+              className="text-5xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              Umfassende Pflegedienste
+            </motion.h1>
+            <motion.p 
+              className="text-xl md:text-2xl text-white/95 max-w-3xl mx-auto leading-relaxed drop-shadow-md font-medium"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
             >
               Wir bieten ein vollständiges Spektrum an Dienstleistungen, die darauf ausgerichtet sind, 
               das körperliche, emotionale und soziale Wohlbefinden unserer Bewohner mit personalisierten 
               Pflegeplänen zu unterstützen.
             </motion.p>
-          {/* </motion.div> */}
           </div>
         </div>
       </section>
-      {/* </motion.section> */}
 
       {/* Core Services */}
       <motion.section 
@@ -186,7 +167,7 @@ const Services = () => {
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Kernpflegedienste
@@ -204,7 +185,7 @@ const Services = () => {
                 animate={isServicesInView ? { opacity: 1, y: 0, scale: 1 } : {}}
                 transition={{ 
                   duration: 0.6, 
-                  delay: 0.4 + (index * 0.5),
+                  delay: 0.3 + (index * 0.15),
                   ease: "easeOut"
                 }}
                 whileHover={{ 
@@ -213,7 +194,7 @@ const Services = () => {
                   transition: { duration: 0.3 }
                 }}
               >
-                <Card className="group hover:shadow-card transition-all duration-300 border-border/50 h-full">
+                <Card className="group hover:shadow-card transition-all duration-300 border-border/50 h-full bg-gradient-to-br from-white to-gray-50">
                   <CardHeader className="text-center">
                     <motion.div 
                       className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-full flex items-center justify-center"
@@ -239,8 +220,8 @@ const Services = () => {
                           initial={{ opacity: 0, x: -20 }}
                           animate={isServicesInView ? { opacity: 1, x: 0 } : {}}
                           transition={{ 
-                            duration: 0.5, 
-                            delay: 0.6 + (index * 0.1) + (detailIndex * 0.1)
+                            duration: 0.4, 
+                            delay: 0.4 + (index * 0.15) + (detailIndex * 0.08)
                           }}
                         >
                           <motion.div 
@@ -273,7 +254,7 @@ const Services = () => {
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             animate={isSpecialtyInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Spezialpflegeprogramme
@@ -290,8 +271,8 @@ const Services = () => {
                 initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                 animate={isSpecialtyInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ 
-                  duration: 0.8, 
-                  delay: 0.4 + (index * 0.2),
+                  duration: 0.6, 
+                  delay: 0.3 + (index * 0.15),
                   ease: "easeOut"
                 }}
                 whileHover={{ 
@@ -300,11 +281,11 @@ const Services = () => {
                   transition: { duration: 0.3 }
                 }}
               >
-                <Card className="group hover:shadow-card transition-all duration-500 border-border/50 h-full">
+                <Card className="group hover:shadow-card transition-all duration-300 border-border/50 h-full bg-gradient-to-br from-white to-gray-50">
                   <CardHeader>
                     <div className="flex items-center space-x-4">
                       <motion.div 
-                        className="w-12 h-12 bg-gradient-to-br from-warm-green to-warm-green/80 rounded-lg flex items-center justify-center"
+                        className="w-12 h-12 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-lg flex items-center justify-center"
                         whileHover={{ 
                           scale: 1.1,
                           rotate: 5,
@@ -328,12 +309,12 @@ const Services = () => {
                           initial={{ opacity: 0, y: 20 }}
                           animate={isSpecialtyInView ? { opacity: 1, y: 0 } : {}}
                           transition={{ 
-                            duration: 0.5, 
-                            delay: 0.6 + (index * 0.2) + (featureIndex * 0.1)
+                            duration: 0.4, 
+                            delay: 0.4 + (index * 0.15) + (featureIndex * 0.08)
                           }}
                         >
                           <motion.div 
-                            className="w-1.5 h-1.5 bg-warm-green rounded-full"
+                            className="w-1.5 h-1.5 bg-trust-green rounded-full"
                             animate={{ scale: [1, 1.3, 1] }}
                             transition={{ duration: 2, repeat: Infinity, delay: featureIndex * 0.3 }}
                           ></motion.div>
@@ -364,28 +345,37 @@ const Services = () => {
               className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
               initial={{ opacity: 0, y: 50 }}
               animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
               <motion.div 
                 className="space-y-6"
                 initial={{ opacity: 0, x: -30 }}
                 animate={isHighlightsInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.4 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <motion.div 
                   className="flex items-center space-x-3"
                   initial={{ opacity: 0, x: -20 }}
                   animate={isHighlightsInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.6 }}
+                  transition={{ duration: 0.4, delay: 0.6 }}
                 >
-                  <Utensils className="w-6 h-6 text-trust-green" />
+                  <motion.div 
+                    className="w-8 h-8 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-full flex items-center justify-center"
+                    whileHover={{ 
+                      scale: 1.1,
+                      rotate: 5,
+                      transition: { duration: 0.3 }
+                    }}
+                  >
+                    <Utensils className="w-4 h-4 text-white" />
+                  </motion.div>
                   <span className="text-trust-green font-semibold">Kulinarische Exzellenz</span>
                 </motion.div>
                 <motion.h3 
                   className="text-3xl font-bold text-foreground"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.8 }}
+                  transition={{ duration: 0.4, delay: 0.8 }}
                 >
                   Gourmet-Dining-Erlebnis
                 </motion.h3>
@@ -393,7 +383,7 @@ const Services = () => {
                   className="text-lg text-muted-foreground leading-relaxed"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 1.0 }}
+                  transition={{ duration: 0.4, delay: 1.0 }}
                 >
                   Unser professionelles Küchenteam erstellt köstliche, ernährungsphysiologisch ausgewogene Mahlzeiten 
                   mit frischen, lokal bezogenen Zutaten. Besondere Ernährungsbedürfnisse und Vorlieben 
@@ -403,7 +393,7 @@ const Services = () => {
                   className="space-y-3"
                   initial={{ opacity: 0 }}
                   animate={isHighlightsInView ? { opacity: 1 } : {}}
-                  transition={{ duration: 0.6, delay: 1.2 }}
+                  transition={{ duration: 0.4, delay: 1.2 }}
                 >
                   {[
                     "Täglich zubereitete Menüs vom Koch",
@@ -415,7 +405,7 @@ const Services = () => {
                       className="flex items-center space-x-3"
                       initial={{ opacity: 0, x: -20 }}
                       animate={isHighlightsInView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.5, delay: 1.4 + (index * 0.1) }}
+                      transition={{ duration: 0.4, delay: 1.4 + (index * 0.15) }}
                     >
                       <motion.div 
                         className="w-2 h-2 bg-trust-green rounded-full"
@@ -432,10 +422,10 @@ const Services = () => {
                 className="relative"
                 initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
                 animate={isHighlightsInView ? { opacity: 1, scale: 1, rotateY: 0 } : {}}
-                transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
                 whileHover={{ 
                   scale: 1.05,
-                  transition: { duration: 0.3 }
+                  transition: { duration: 0.4 }
                 }}
               >
                 <motion.div 
@@ -462,20 +452,20 @@ const Services = () => {
               className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
               initial={{ opacity: 0, y: 50 }}
               animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
               <motion.div 
                 className="relative order-2 lg:order-1"
                 initial={{ opacity: 0, scale: 0.8, rotateY: 15 }}
                 animate={isHighlightsInView ? { opacity: 1, scale: 1, rotateY: 0 } : {}}
-                transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
+                transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
                 whileHover={{ 
                   scale: 1.05,
-                  transition: { duration: 0.3 }
+                  transition: { duration: 0.4 }
                 }}
               >
                 <motion.div 
-                  className="absolute -top-4 -right-4 w-full h-full bg-gradient-to-br from-warm-green/20 to-transparent rounded-2xl"
+                  className="absolute -top-4 -right-4 w-full h-full bg-gradient-to-br from-trust-green/20 to-transparent rounded-2xl"
                   animate={{ 
                     boxShadow: [
                       "0 0 0 rgba(34, 197, 94, 0.2)",
@@ -483,7 +473,7 @@ const Services = () => {
                       "0 0 0 rgba(34, 197, 94, 0.2)"
                     ]
                   }}
-                  transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+                  transition={{ duration: 3, repeat: Infinity, delay: 0.8 }}
                 ></motion.div>
                 <img 
                   src={rehabImage} 
@@ -496,22 +486,31 @@ const Services = () => {
                 className="space-y-6 order-1 lg:order-2"
                 initial={{ opacity: 0, x: 30 }}
                 animate={isHighlightsInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8, delay: 1.0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
               >
                 <motion.div 
                   className="flex items-center space-x-3"
                   initial={{ opacity: 0, x: 20 }}
                   animate={isHighlightsInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 1.2 }}
+                  transition={{ duration: 0.4, delay: 1.0 }}
                 >
-                  <Dumbbell className="w-6 h-6 text-warm-green" />
-                  <span className="text-warm-green font-semibold">Erholung & Wohlbefinden</span>
+                  <motion.div 
+                    className="w-8 h-8 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-full flex items-center justify-center"
+                    whileHover={{ 
+                      scale: 1.1,
+                      rotate: 5,
+                      transition: { duration: 0.3 }
+                    }}
+                  >
+                    <Dumbbell className="w-4 h-4 text-white" />
+                  </motion.div>
+                  <span className="text-trust-green font-semibold">Erholung & Wohlbefinden</span>
                 </motion.div>
                 <motion.h3 
                   className="text-3xl font-bold text-foreground"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 1.4 }}
+                  transition={{ duration: 0.4, delay: 1.2 }}
                 >
                   Rehabilitation & Therapie
                 </motion.h3>
@@ -519,46 +518,12 @@ const Services = () => {
                   className="text-lg text-muted-foreground leading-relaxed"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 1.6 }}
+                  transition={{ duration: 0.4, delay: 1.4 }}
                 >
                   Unser modernes Rehabilitationszentrum bietet umfassende Therapiedienste 
                   zur Erhaltung der Mobilität, Erholung von Verletzungen und Verbesserung 
                   der Lebensqualität.
                 </motion.p>
-                <motion.div 
-                  className="grid grid-cols-2 gap-4"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 1.8 }}
-                >
-                  {[
-                    { number: "7", label: "Tage pro Woche" },
-                    { number: "3", label: "Therapietypen" }
-                  ].map((stat, index) => (
-                    <motion.div 
-                      key={index}
-                      className="text-center p-4 bg-card rounded-lg border border-border/50 hover:shadow-lg transition-all duration-300"
-                      whileHover={{ 
-                        y: -5,
-                        scale: 1.05,
-                        transition: { duration: 0.3 }
-                      }}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={isHighlightsInView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ duration: 0.5, delay: 2.0 + (index * 0.2) }}
-                    >
-                      <motion.div 
-                        className="text-2xl font-bold text-warm-green"
-                        initial={{ scale: 0 }}
-                        animate={isHighlightsInView ? { scale: 1 } : {}}
-                        transition={{ duration: 0.5, delay: 2.2 + (index * 0.2) }}
-                      >
-                        {stat.number}
-                      </motion.div>
-                      <div className="text-sm text-muted-foreground">{stat.label}</div>
-                    </motion.div>
-                  ))}
-                </motion.div>
               </motion.div>
             </motion.div>
 
@@ -567,28 +532,37 @@ const Services = () => {
               className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
               initial={{ opacity: 0, y: 50 }}
               animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
             >
               <motion.div 
                 className="space-y-6"
                 initial={{ opacity: 0, x: -30 }}
                 animate={isHighlightsInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8, delay: 1.2 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
               >
                 <motion.div 
                   className="flex items-center space-x-3"
                   initial={{ opacity: 0, x: -20 }}
                   animate={isHighlightsInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 1.4 }}
+                  transition={{ duration: 0.4, delay: 1.0 }}
                 >
-                  <Activity className="w-6 h-6 text-accent" />
-                  <span className="text-accent font-semibold">Bereicherungsprogramme</span>
+                  <motion.div 
+                    className="w-8 h-8 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-full flex items-center justify-center"
+                    whileHover={{ 
+                      scale: 1.1,
+                      rotate: 5,
+                      transition: { duration: 0.3 }
+                    }}
+                  >
+                    <Activity className="w-4 h-4 text-white" />
+                  </motion.div>
+                  <span className="text-trust-green font-semibold">Bereicherungsprogramme</span>
                 </motion.div>
                 <motion.h3 
                   className="text-3xl font-bold text-foreground"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 1.6 }}
+                  transition={{ duration: 0.4, delay: 1.2 }}
                 >
                   Tägliche Aktivitäten & Programme
                 </motion.h3>
@@ -596,7 +570,7 @@ const Services = () => {
                   className="text-lg text-muted-foreground leading-relaxed"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 1.8 }}
+                  transition={{ duration: 0.4, delay: 1.4 }}
                 >
                   Unser vielfältiges Aktivitätsprogramm fördert soziale Beteiligung, kognitive Stimulation 
                   und persönliche Erfüllung durch eine Vielzahl von Freizeit- und Bildungsmöglichkeiten.
@@ -605,7 +579,7 @@ const Services = () => {
                   className="grid grid-cols-3 gap-4"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 2.0 }}
+                  transition={{ duration: 0.4, delay: 1.6 }}
                 >
                   {[
                     { icon: Music, label: "Musiktherapie" },
@@ -617,7 +591,7 @@ const Services = () => {
                       className="text-center"
                       initial={{ opacity: 0, y: 20 }}
                       animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ duration: 0.5, delay: 2.2 + (index * 0.1) }}
+                      transition={{ duration: 0.4, delay: 1.8 + (index * 0.2) }}
                       whileHover={{ 
                         y: -5,
                         scale: 1.05,
@@ -625,14 +599,14 @@ const Services = () => {
                       }}
                     >
                       <motion.div 
-                        className="w-12 h-12 mx-auto mb-2 bg-gradient-to-br from-accent to-accent/80 rounded-lg flex items-center justify-center"
+                        className="w-12 h-12 mx-auto mb-2 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-lg flex items-center justify-center"
                         whileHover={{ 
                           scale: 1.1,
                           rotate: 5,
                           transition: { duration: 0.3 }
                         }}
                       >
-                        <activity.icon className="w-6 h-6 text-warm-green" />
+                        <activity.icon className="w-6 h-6 text-white" />
                       </motion.div>
                       <div className="text-sm text-foreground font-medium">{activity.label}</div>
                     </motion.div>
@@ -644,22 +618,22 @@ const Services = () => {
                 className="relative"
                 initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
                 animate={isHighlightsInView ? { opacity: 1, scale: 1, rotateY: 0 } : {}}
-                transition={{ duration: 1, delay: 1.4, ease: "easeOut" }}
+                transition={{ duration: 0.8, delay: 1.0, ease: "easeOut" }}
                 whileHover={{ 
                   scale: 1.05,
-                  transition: { duration: 0.3 }
+                  transition: { duration: 0.4 }
                 }}
               >
                 <motion.div 
-                  className="absolute -top-4 -left-4 w-full h-full bg-gradient-to-br from-accent/20 to-transparent rounded-2xl"
+                  className="absolute -top-4 -left-4 w-full h-full bg-gradient-to-br from-trust-green/20 to-transparent rounded-2xl"
                   animate={{ 
                     boxShadow: [
-                      "0 0 0 rgba(168, 85, 247, 0.2)",
-                      "0 0 20px rgba(168, 85, 247, 0.4)",
-                      "0 0 0 rgba(168, 85, 247, 0.2)"
+                      "0 0 0 rgba(34, 197, 94, 0.2)",
+                      "0 0 20px rgba(34, 197, 94, 0.4)",
+                      "0 0 0 rgba(34, 197, 94, 0.2)"
                     ]
                   }}
-                  transition={{ duration: 3, repeat: Infinity, delay: 2 }}
+                  transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
                 ></motion.div>
                 <img 
                   src={activitiesImage} 
@@ -678,7 +652,7 @@ const Services = () => {
         initial={{ opacity: 0 }}
         animate={isCtaInView ? { opacity: 1 } : {}}
         transition={{ duration: 0.8 }}
-        className="py-20 bg-gradient-to-r from-trust-green to-trust-green/90 text-white"
+        className="py-20 bg-gradient-to-r from-trust-green to-trust-green/90 text-white relative"
         style={{
           backgroundImage: `url(${holdingHand})`,
           backgroundSize: 'cover',
@@ -686,34 +660,37 @@ const Services = () => {
           backgroundRepeat: 'no-repeat',
         }}
       >
-        <div className="container mx-auto px-6 text-center">
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/40"></div>
+        
+        <div className="container mx-auto px-6 text-center relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
             <motion.h2 
-              className="text-4xl font-bold mb-6"
+              className="text-4xl font-bold mb-6 text-white"
               initial={{ opacity: 0, y: 20 }}
               animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.4, delay: 0.4 }}
             >
               Bereit, mehr über unsere Dienste zu erfahren?
             </motion.h2>
             <motion.p 
-              className="text-xl text-white/90 mb-8 max-w-2xl mx-auto"
+              className="text-xl text-white/95 mb-8 max-w-2xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.4, delay: 0.6 }}
             >
               Vereinbaren Sie eine persönliche Beratung, um zu besprechen, wie unsere Dienste 
               die einzigartigen Bedürfnisse Ihres Angehörigen erfüllen können.
             </motion.p>
             <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex justify-center"
               initial={{ opacity: 0, y: 20 }}
               animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.8 }}
+              transition={{ duration: 0.4, delay: 0.8 }}
             >
               <motion.div
                 whileHover={{ 
@@ -722,19 +699,12 @@ const Services = () => {
                 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button variant="warm" size="lg" className="text-lg px-8">
-                  Beratung vereinbaren
-                </Button>
-              </motion.div>
-              <motion.div
-                whileHover={{ 
-                  scale: 1.05,
-                  transition: { duration: 0.3 }
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button variant="outline" size="lg" className="text-lg px-8 border-white text-white hover:bg-white hover:text-trust-green bg-white/10 backdrop-blur-sm">
-                  Dienstleistungsführer herunterladen
+                <Button 
+                  size="lg" 
+                  className="text-lg px-8 py-6 bg-white text-trust-green hover:bg-gray-100 font-semibold border-2 border-white transition-all duration-300 shadow-lg"
+                  onClick={handleContactClick}
+                >
+                  Kontaktieren Sie uns
                 </Button>
               </motion.div>
             </motion.div>

@@ -8,61 +8,61 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
-    --foreground: 210 25% 27%;
+    --background: 210 15% 98%;
+    --foreground: 210 20% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 25% 27%;
+    --card-foreground: 210 20% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 25% 27%;
+    --popover-foreground: 210 20% 15%;
 
-    --primary: 210 70% 60%;
+    --primary: 155 45% 45%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 20% 98%;
-    --secondary-foreground: 210 25% 27%;
+    --secondary: 210 15% 96%;
+    --secondary-foreground: 210 20% 15%;
 
-    --muted: 220 10% 85%;
-    --muted-foreground: 210 10% 30%;
+    --muted: 210 10% 90%;
+    --muted-foreground: 210 15% 40%;
 
-    --accent: 210 70% 60%;
+    --accent: 155 45% 45%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 220 13% 91%;
-    --input: 220 10% 85%;
-    --ring: 210 70% 60%;
+    --border: 210 15% 88%;
+    --input: 210 10% 92%;
+    --ring: 155 45% 45%;
 
-    /* Dreieich Pflege brand colors - New Sophisticated Palette */
-    --soft-green: 150 70% 60%;
-    --warm-white: 210 20% 98%;
-    --soft-lavender: 240 20% 98%;
-    --light-sage: 150 40% 75%;
-    --sunrise-peach: 15 70% 85%;
-    --steel-gray: 210 10% 30%;
-    --coral-red: 0 70% 65%;
-    --sky-gray: 220 13% 91%;
-    --deep-navy: 210 25% 25%;
+    /* Dreieich Pflege brand colors - Harmonized Professional Palette */
+    --soft-green: 155 45% 45%;
+    --warm-white: 210 15% 98%;
+    --soft-lavender: 210 15% 96%;
+    --light-sage: 155 30% 70%;
+    --sunrise-peach: 20 60% 75%;
+    --steel-gray: 210 15% 25%;
+    --coral-red: 15 70% 60%;
+    --sky-gray: 210 15% 88%;
+    --deep-navy: 210 35% 20%;
     
     /* Additional brand colors for icons and accents */
-    --compassionate-green: 150 50% 50%;
-    --trust-green: 150 70% 60%;
-    --accent-orange: 25 80% 60%;
+    --compassionate-green: 155 40% 50%;
+    --trust-green: 155 45% 45%;
+    --accent-orange: 20 65% 65%;
     
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(150 70% 60%), hsl(150 60% 70%));
-    --gradient-warm: linear-gradient(135deg, hsl(210 20% 98%), hsl(240 20% 98%));
-    --gradient-trust: linear-gradient(180deg, hsl(150 70% 60% / 0.05), hsl(150 70% 60% / 0.02));
-    --gradient-compassion: linear-gradient(135deg, hsl(150 40% 75%), hsl(150 30% 85%));
-    --gradient-accent: linear-gradient(135deg, hsl(15 70% 85%), hsl(15 60% 95%));
+    --gradient-hero: linear-gradient(135deg, hsl(155 45% 45%), hsl(155 40% 50%));
+    --gradient-warm: linear-gradient(135deg, hsl(210 15% 98%), hsl(210 15% 96%));
+    --gradient-trust: linear-gradient(180deg, hsl(155 45% 45% / 0.05), hsl(155 45% 45% / 0.02));
+    --gradient-compassion: linear-gradient(135deg, hsl(155 30% 70%), hsl(155 25% 75%));
+    --gradient-accent: linear-gradient(135deg, hsl(20 60% 75%), hsl(20 55% 80%));
     
     /* Shadows */
-    --shadow-soft: 0 4px 20px hsl(150 70% 60% / 0.1);
-    --shadow-card: 0 8px 30px hsl(0 0% 0% / 0.08);
-    --shadow-hero: 0 10px 40px hsl(0 0% 0% / 0.15);
+    --shadow-soft: 0 4px 20px hsl(155 45% 45% / 0.12);
+    --shadow-card: 0 8px 30px hsl(210 20% 15% / 0.08);
+    --shadow-hero: 0 10px 40px hsl(210 20% 15% / 0.15);
     
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -81,33 +81,33 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 210 30% 8%;
+    --foreground: 210 15% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 210 25% 10%;
+    --card-foreground: 210 15% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 210 25% 10%;
+    --popover-foreground: 210 15% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 155 45% 55%;
+    --primary-foreground: 210 30% 8%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 210 20% 15%;
+    --secondary-foreground: 210 15% 95%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 210 20% 15%;
+    --muted-foreground: 210 10% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 155 45% 55%;
+    --accent-foreground: 210 30% 8%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 70% 60%;
+    --destructive-foreground: 210 15% 95%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 210 20% 20%;
+    --input: 210 20% 15%;
+    --ring: 155 45% 55%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
