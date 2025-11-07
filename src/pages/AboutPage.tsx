@@ -5,14 +5,16 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Quote, Award, Users, Heart, Clock, Calendar, MapPin, Star } from "lucide-react";
 import staffImage from "@/assets/healthcare-staff.jpg";
-import commonAreaImage from "@/assets/common-area.jpg";
+import commonAreaImage from "@/assets/service2.jpeg";
 import hug from "@/assets/hug.jpeg";
 import hug2 from "@/assets/hug2.jpeg";
 import room from "@/assets/timothy-buck-psrloDbaZc8-unsplash.jpg"
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AboutPage = () => {
+  const navigate = useNavigate();
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -25,9 +27,6 @@ const AboutPage = () => {
   const missionRef = useRef(null);
   const isMissionInView = useInView(missionRef, { once: true, margin: "-50px" });
 
-  const statsRef = useRef(null);
-  const isStatsInView = useInView(statsRef, { once: true, margin: "-50px" });
-
   const testimonialsRef = useRef(null);
   const isTestimonialsInView = useInView(testimonialsRef, { once: true, margin: "-50px" });
 
@@ -39,6 +38,10 @@ const AboutPage = () => {
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  const handleContactClick = () => {
+    navigate('/contact');
+  };
 
   const timeline = [
     {
@@ -90,15 +93,11 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="min-h-screen" ref={containerRef}>
+    <div className="min-h-screen font-montserrat" ref={containerRef}>
       <Header />
       
       {/* Hero Section */}
       <section 
-        // ref={heroRef}
-        // initial={{ opacity: 0, y: 50 }}
-        // animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-        // transition={{ duration: 0.8, ease: "easeOut" }}
         className="py-20 bg-gradient-to-br from-trust-green to-trust-green/90 text-white relative overflow-hidden" 
         style={{
           backgroundImage: `url(${hug})`,
@@ -108,30 +107,27 @@ const AboutPage = () => {
           minHeight: '54vh',
         }}
       >
+        <div className="absolute inset-0 bg-black/50"></div>
+        
         <motion.div 
           className="absolute inset-0 bg-trust-green/5"
           style={{ y }}
         ></motion.div>
         <div className="container mx-auto px-6 text-center relative z-10 flex items-center justify-center py-20">
-          {/* <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isHeroInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-          > */}
           <div>
-            <h1 
-              className="text-5xl md:text-6xl font-bold mb-6"
-              // initial={{ opacity: 0, y: 30 }}
-              // animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-              // transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              Unsere Geschichte der Fürsorge
-            </h1>
-            <motion.p 
-              className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed"
+            <motion.h1 
+              className="text-5xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              Unsere Geschichte der Fürsorge
+            </motion.h1>
+            <motion.p 
+              className="text-xl md:text-2xl text-white/95 max-w-3xl mx-auto leading-relaxed drop-shadow-md font-medium"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
             >
               Dreieich Pflege ist seit jeher ein Leuchtturm mitfühlender Pflege, 
               der ein wahres Zuhause schafft, in dem Senioren mit Würde und Freude gedeihen.
@@ -154,27 +150,42 @@ const AboutPage = () => {
               className="space-y-8"
               initial={{ opacity: 0, x: -50 }}
               animate={isMissionInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={isMissionInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.4 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
               >
                 <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
                   Unsere Mission & Werte
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                   Wir glauben, dass jeder Senior mit Würde leben sollte, umgeben von 
-                  Pflege, die ihre Lebensgeschichte ehrt und ihre individuelle Reise unterstützt.
+                  Pflege, die seine Lebensgeschichte ehrt und seine individuelle Reise unterstützt.
                 </p>
               </motion.div>
               
               <div className="space-y-6">
                 {[
-                  { icon: Heart, title: "Mitgefühl", description: "Jede Interaktion wird von Empathie, Freundlichkeit und echter Fürsorge für das Wohlbefinden unserer Bewohner geleitet.", color: "text-trust-green" },
-                  { icon: Users, title: "Gemeinschaft", description: "Wir fördern bedeutungsvolle Verbindungen und schaffen eine Umgebung, in der sich jeder zugehörig fühlt.", color: "text-warm-green" },
-                  { icon: Award, title: "Exzellenz", description: "Wir streben kontinuierlich nach den höchsten Standards in Pflege, Sicherheit und Servicequalität.", color: "text-accent" }
+                  { 
+                    icon: Heart, 
+                    title: "Mitgefühl", 
+                    description: "Jede Interaktion wird von Empathie, Freundlichkeit und echter Fürsorge für das Wohlbefinden unserer Bewohner geleitet.",
+                    iconBg: "bg-gradient-to-br from-trust-green to-trust-green/80"
+                  },
+                  { 
+                    icon: Users, 
+                    title: "Gemeinschaft", 
+                    description: "Wir fördern bedeutungsvolle Verbindungen und schaffen eine Umgebung, in der sich jeder zugehörig fühlt.",
+                    iconBg: "bg-gradient-to-br from-trust-green to-trust-green/80"
+                  },
+                  { 
+                    icon: Award, 
+                    title: "Exzellenz", 
+                    description: "Wir streben kontinuierlich nach den höchsten Standards in Pflege, Sicherheit und Servicequalität.",
+                    iconBg: "bg-gradient-to-br from-trust-green to-trust-green/80"
+                  }
                 ].map((value, index) => (
                   <motion.div
                     key={index}
@@ -182,7 +193,7 @@ const AboutPage = () => {
                     animate={isMissionInView ? { opacity: 1, y: 0, scale: 1 } : {}}
                     transition={{ 
                       duration: 0.6, 
-                      delay: 0.6 + (index * 0.2),
+                      delay: 0.3 + (index * 0.15),
                       ease: "easeOut"
                     }}
                     whileHover={{ 
@@ -191,18 +202,18 @@ const AboutPage = () => {
                       transition: { duration: 0.3 }
                     }}
                   >
-                    <Card className="border-border/50 hover:shadow-card transition-all duration-300 hover:-translate-y-1">
+                    <Card className="border-border/50 hover:shadow-card transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-white to-gray-50">
                       <CardContent className="p-6">
                         <div className="flex items-center space-x-4 mb-3">
                           <motion.div
-                            className={`w-6 h-6 ${value.color}`}
+                            className={`w-12 h-12 ${value.iconBg} rounded-lg flex items-center justify-center`}
                             whileHover={{ 
                               scale: 1.1,
                               rotate: 5,
                               transition: { duration: 0.3 }
                             }}
                           >
-                            <value.icon className="w-6 h-6" fill="currentColor" />
+                            <value.icon className="w-6 h-6 text-white" />
                           </motion.div>
                           <h3 className="text-xl font-semibold text-foreground">{value.title}</h3>
                         </div>
@@ -218,105 +229,29 @@ const AboutPage = () => {
               className="relative"
               initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
               animate={isMissionInView ? { opacity: 1, scale: 1, rotateY: 0 } : {}}
-              transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
               whileHover={{ 
                 scale: 1.05,
-                transition: { duration: 0.3 }
+                transition: { duration: 0.4 }
               }}
             >
-                              <motion.div 
-                  className="absolute -top-4 -left-4 w-full h-full bg-gradient-to-br from-trust-green/20 to-transparent rounded-2xl"
-                  animate={{ 
-                    boxShadow: [
-                      "0 0 0 rgba(34, 197, 94, 0.2)",
-                      "0 0 20px rgba(34, 197, 94, 0.4)",
-                      "0 0 0 rgba(34, 197, 94, 0.2)"
-                    ]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                ></motion.div>
+              <motion.div 
+                className="absolute -top-4 -left-4 w-full h-full bg-gradient-to-br from-trust-green/20 to-transparent rounded-2xl"
+                animate={{ 
+                  boxShadow: [
+                    "0 0 0 rgba(34, 197, 94, 0.2)",
+                    "0 0 20px rgba(34, 197, 94, 0.4)",
+                    "0 0 0 rgba(34, 197, 94, 0.2)"
+                  ]
+                }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              ></motion.div>
               <img 
                 src={hug2} 
                 alt="Gesundheitspersonal"
                 className="relative rounded-2xl shadow-card w-full h-96 object-cover"
               />
             </motion.div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Statistics */}
-      <motion.section 
-        ref={statsRef}
-        initial={{ opacity: 0 }}
-        animate={isStatsInView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.8 }}
-        className="py-20 bg-gradient-to-r from-secondary/30 to-accent/20"
-      >
-        <div className="container mx-auto px-6">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isStatsInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              In Zahlen
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Unser Engagement für Exzellenz spiegelt sich in unseren Leistungen und der Zufriedenheit der Bewohner wider
-            </p>
-          </motion.div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { number: "25", label: "Jahre", sublabel: "fürsorglicher Service", color: "text-trust-green" },
-              { number: "200+", label: "Familien", sublabel: "mit Exzellenz betreut", color: "text-warm-green" },
-              { number: "50+", label: "Mitarbeiter", sublabel: "Engagierte Fachkräfte", color: "text-accent" },
-              { number: "5", label: "Sterne Bewertung", sublabel: "Staatliche Zertifizierung", color: "text-trust-green", icon: Star }
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                animate={isStatsInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: 0.4 + (index * 0.2),
-                  ease: "easeOut"
-                }}
-                whileHover={{ 
-                  y: -10,
-                  scale: 1.05,
-                  transition: { duration: 0.3 }
-                }}
-              >
-                <Card className="text-center border-border/50 hover:shadow-card transition-all duration-300 hover:-translate-y-2">
-                  <CardContent className="p-8">
-                    <motion.div 
-                      className={`text-4xl font-bold ${stat.color} mb-2`}
-                      initial={{ scale: 0 }}
-                      animate={isStatsInView ? { scale: 1 } : {}}
-                      transition={{ duration: 0.5, delay: 0.6 + (index * 0.2) }}
-                      whileHover={{ 
-                        scale: 1.1,
-                        transition: { duration: 0.3 }
-                      }}
-                    >
-                      {stat.icon ? (
-                        <div className="flex items-center justify-center space-x-1">
-                          <span>{stat.number}</span>
-                          <stat.icon className="w-8 h-8 animate-pulse-soft" fill="currentColor" />
-                        </div>
-                      ) : (
-                        stat.number
-                      )}
-                    </motion.div>
-                    <div className="text-lg font-semibold text-foreground mb-1">{stat.label}</div>
-                    <div className="text-sm text-muted-foreground">{stat.sublabel}</div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
           </div>
         </div>
       </motion.section>
@@ -334,7 +269,7 @@ const AboutPage = () => {
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             animate={isTestimonialsInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Was Familien sagen
@@ -352,7 +287,7 @@ const AboutPage = () => {
                 animate={isTestimonialsInView ? { opacity: 1, y: 0, scale: 1 } : {}}
                 transition={{ 
                   duration: 0.6, 
-                  delay: 0.4 + (index * 0.2),
+                  delay: 0.3 + (index * 0.15),
                   ease: "easeOut"
                 }}
                 whileHover={{ 
@@ -361,7 +296,7 @@ const AboutPage = () => {
                   transition: { duration: 0.3 }
                 }}
               >
-                <Card className="bg-gradient-to-br from-soft-cream to-accent/50 border-accent/20 hover:shadow-card transition-all duration-300 hover:-translate-y-2">
+                <Card className="bg-gradient-to-br from-white to-gray-50 border-border/50 hover:shadow-card transition-all duration-300 hover:-translate-y-2">
                   <CardContent className="p-8">
                     <motion.div
                       className="w-8 h-8 text-trust-green mb-4"
@@ -369,7 +304,7 @@ const AboutPage = () => {
                         scale: [1, 1.1, 1],
                         rotate: [0, 5, 0]
                       }}
-                      transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
+                      transition={{ duration: 2, repeat: Infinity, delay: index * 0.3, ease: "easeInOut" }}
                     >
                       <Quote className="w-8 h-8" />
                     </motion.div>
@@ -387,13 +322,13 @@ const AboutPage = () => {
                             key={i}
                             initial={{ scale: 0 }}
                             animate={isTestimonialsInView ? { scale: 1 } : {}}
-                            transition={{ duration: 0.3, delay: 0.6 + (index * 0.2) + (i * 0.1) }}
+                            transition={{ duration: 0.5, delay: 0.3 + (index * 0.15) + (i * 0.1), ease: "easeOut" }}
                             whileHover={{ 
                               scale: 1.2,
-                              transition: { duration: 0.2 }
+                              transition: { duration: 0.3 }
                             }}
                           >
-                            <Star className="w-4 h-4 text-accent" fill="currentColor" />
+                            <Star className="w-4 h-4 text-trust-green" fill="currentColor" />
                           </motion.div>
                         ))}
                       </div>
@@ -420,14 +355,14 @@ const AboutPage = () => {
               className="relative"
               initial={{ opacity: 0, scale: 0.8, rotateY: 15 }}
               animate={isTeamInView ? { opacity: 1, scale: 1, rotateY: 0 } : {}}
-              transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
               whileHover={{ 
                 scale: 1.05,
-                transition: { duration: 0.3 }
+                transition: { duration: 0.4 }
               }}
             >
               <motion.div 
-                className="absolute -top-4 -right-4 w-full h-full bg-gradient-to-br from-warm-green/20 to-transparent rounded-2xl"
+                className="absolute -top-4 -right-4 w-full h-full bg-gradient-to-br from-trust-green/20 to-transparent rounded-2xl"
                 animate={{ 
                   boxShadow: [
                     "0 0 0 rgba(34, 197, 94, 0.2)",
@@ -435,7 +370,7 @@ const AboutPage = () => {
                     "0 0 0 rgba(34, 197, 94, 0.2)"
                   ]
                 }}
-                transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+                transition={{ duration: 3, repeat: Infinity, delay: 0.5, ease: "easeInOut" }}
               ></motion.div>
               <img 
                 src={commonAreaImage} 
@@ -448,13 +383,13 @@ const AboutPage = () => {
               className="space-y-8"
               initial={{ opacity: 0, x: 50 }}
               animate={isTeamInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <motion.h2 
                 className="text-4xl font-bold text-foreground"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.6 }}
+                transition={{ duration: 0.8 }}
               >
                 Lernen Sie unsere Pflegefamilie kennen
               </motion.h2>
@@ -462,7 +397,7 @@ const AboutPage = () => {
                 className="text-lg text-muted-foreground leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.8 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
               >
                 Unser Team engagierter Fachkräfte bringt jahrelange Erfahrung, 
                 spezialisierte Ausbildung und echte Leidenschaft für die Seniorenpflege zusammen. 
@@ -473,39 +408,49 @@ const AboutPage = () => {
                 className="grid grid-cols-2 gap-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 1.0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
               >
                 {[
-                  { icon: Clock, number: "24/7", label: "Pflege verfügbar" },
-                  { icon: Calendar, number: "365", label: "Tage im Jahr" }
+                  { 
+                    icon: Clock, 
+                    number: "24/7", 
+                    label: "Pflege verfügbar",
+                    iconBg: "bg-gradient-to-br from-trust-green to-trust-green/80"
+                  },
+                  { 
+                    icon: Calendar, 
+                    number: "365", 
+                    label: "Tage im Jahr",
+                    iconBg: "bg-gradient-to-br from-trust-green to-trust-green/80"
+                  }
                 ].map((stat, index) => (
                   <motion.div 
                     key={index}
-                    className="text-center p-4 bg-card rounded-lg border border-border/50 hover:shadow-lg transition-all duration-300"
+                    className="text-center p-4 bg-gradient-to-br from-white to-gray-50 rounded-lg border border-border/50 hover:shadow-lg transition-all duration-300"
                     whileHover={{ 
                       y: -5,
                       scale: 1.05,
-                      transition: { duration: 0.3 }
+                      transition: { duration: 0.4 }
                     }}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={isTeamInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ duration: 0.5, delay: 1.2 + (index * 0.2) }}
+                    transition={{ duration: 0.6, delay: 0.6 + (index * 0.15), ease: "easeOut" }}
                   >
                     <motion.div 
-                      className="w-8 h-8 text-trust-green mx-auto mb-3"
+                      className={`w-8 h-8 ${stat.iconBg} rounded-full flex items-center justify-center mx-auto mb-3`}
                       whileHover={{ 
                         scale: 1.1,
                         rotate: 5,
                         transition: { duration: 0.3 }
                       }}
                     >
-                      <stat.icon className="w-8 h-8" />
+                      <stat.icon className="w-4 h-4 text-white" />
                     </motion.div>
                     <motion.div 
-                      className="text-2xl font-bold text-foreground"
+                      className="text-2xl font-bold text-trust-green"
                       initial={{ scale: 0 }}
                       animate={isTeamInView ? { scale: 1 } : {}}
-                      transition={{ duration: 0.5, delay: 1.4 + (index * 0.2) }}
+                      transition={{ duration: 0.6, delay: 0.8 + (index * 0.15), ease: "easeOut" }}
                     >
                       {stat.number}
                     </motion.div>
@@ -516,10 +461,14 @@ const AboutPage = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 1.4 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
               >
-                <Button variant="caring" size="lg">
-                  Unser Team kennenlernen
+                <Button 
+                  className="bg-gradient-to-r from-trust-green to-trust-green/80 hover:from-trust-green hover:to-trust-green text-white transition-all duration-300" 
+                  size="lg"
+                  onClick={handleContactClick}
+                >
+                  Kontaktieren Sie uns
                 </Button>
               </motion.div>
             </motion.div>
@@ -533,7 +482,7 @@ const AboutPage = () => {
         initial={{ opacity: 0 }}
         animate={isCtaInView ? { opacity: 1 } : {}}
         transition={{ duration: 0.8 }}
-        className="py-20 bg-gradient-to-r from-trust-green to-trust-green/90 text-white"
+        className="py-20 bg-gradient-to-r from-trust-green to-trust-green/90 text-white relative"
         style={{
           backgroundImage: `url(${room})`,
           backgroundSize: 'cover',
@@ -541,34 +490,36 @@ const AboutPage = () => {
           backgroundRepeat: 'no-repeat',
         }}
       >
-        <div className="container mx-auto px-6 text-center">
+        <div className="absolute inset-0 bg-black/40"></div>
+        
+        <div className="container mx-auto px-6 text-center relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
             <motion.h2 
-              className="text-4xl font-bold mb-6"
+              className="text-4xl font-bold mb-6 text-white drop-shadow-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.4, delay: 0.4 }}
             >
               Erleben Sie den Dreieich Pflege Unterschied
             </motion.h2>
             <motion.p 
-              className="text-xl text-white/90 mb-8 max-w-2xl mx-auto"
+              className="text-xl text-white/95 mb-8 max-w-2xl mx-auto leading-relaxed drop-shadow-md"
               initial={{ opacity: 0, y: 20 }}
               animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.4, delay: 0.6 }}
             >
               Besuchen Sie uns, um aus erster Hand zu sehen, wie wir eine fürsorgliche 
               Gemeinschaft schaffen, in der Ihr Angehöriger wirklich gedeihen kann.
             </motion.p>
             <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex justify-center"
               initial={{ opacity: 0, y: 20 }}
               animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.8 }}
+              transition={{ duration: 0.4, delay: 0.8 }}
             >
               <motion.div
                 whileHover={{ 
@@ -577,19 +528,12 @@ const AboutPage = () => {
                 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button variant="warm" size="lg" className="text-lg px-8">
-                  Rundgang vereinbaren
-                </Button>
-              </motion.div>
-              <motion.div
-                whileHover={{ 
-                  scale: 1.05,
-                  transition: { duration: 0.3 }
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button variant="outline" size="lg" className="text-lg px-8 border-white text-white hover:bg-white hover:text-trust-green bg-white/10 backdrop-blur-sm">
-                  Broschüre herunterladen
+                <Button 
+                  size="lg" 
+                  className="text-lg px-8 py-6 bg-white text-trust-green hover:bg-gray-100 font-semibold border-2 border-white transition-all duration-300 shadow-lg"
+                  onClick={handleContactClick}
+                >
+                  Kontaktieren Sie uns
                 </Button>
               </motion.div>
             </motion.div>

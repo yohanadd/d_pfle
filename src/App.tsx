@@ -10,6 +10,8 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import Imprint from "./pages/Imprint";
 import NotFound from "./pages/NotFound";
+import ImprintPage from "./pages/ImprintPage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +23,8 @@ const AppRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path="/services" element={<Services />} />
       <Route path="/about" element={<AboutPage />} />
+      <Route path="/imprint" element={<ImprintPage/>} />
+      <Route path="/privacy" element={<PrivacyPolicyPage/>} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/team" element={<AboutPage />} /> {/* Temporary redirect to About */}
       <Route path="/faq" element={<AboutPage />} /> {/* Temporary redirect to About */}

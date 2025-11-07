@@ -2,10 +2,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MapPin, Phone, Mail, Clock, Calendar, Car, Ambulance } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Calendar, Car, Ambulance, Bus } from "lucide-react";
 import outdoor from "@/assets/dominik-lange-VUOiQW4OeLI-unsplash.jpg";
 import holdingHand from "@/assets/holdHand.jpg";
-// import couplehug from "@/assets/female-nurse-taking-care-elderly-person.jpg";
 import couplehug from "@/assets/vlad-sargu-ItphH2lGzuI-unsplash.jpg";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef } from "react";
@@ -35,279 +34,78 @@ const ContactPage = () => {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  const emergencyContacts = [
-    {
-      icon: Phone,
-      title: "Notfall-Hotline",
-      primary: "(555) 123-4567",
-      secondary: "24/7 für dringende Angelegenheiten verfügbar",
-      urgent: true
-    },
-    {
-      icon: Ambulance,
-      title: "Medizinischer Notfall",
-      primary: "911",
-      secondary: "Für lebensbedrohliche Situationen",
-      urgent: true
-    }
-  ];
-
-  const departments = [
-    {
-      icon: Phone,
-      title: "Aufnahme",
-      contact: "(555) 123-4568",
-      email: "aufnahme@dreieichpflege.care",
-      hours: "Mo-Fr: 8:00 - 18:00"
-    },
-    {
-      icon: Mail,
-      title: "Familienbetreuung",
-      contact: "(555) 123-4569",
-      email: "familien@dreieichpflege.care",
-      hours: "Täglich: 8:00 - 20:00"
-    },
-    {
-      icon: Calendar,
-      title: "Aktivitätenkoordinator",
-      contact: "(555) 123-4570",
-      email: "aktivitaeten@dreieichpflege.care",
-      hours: "Mo-Fr: 9:00 - 17:00"
-    },
-    {
-      icon: Car,
-      title: "Transport",
-      contact: "(555) 123-4571",
-      email: "transport@dreieichpflege.care",
-      hours: "Mo-Fr: 8:00 - 16:00"
-    }
+  const openingHours = [
+    { day: "Mo-Fr", hours: "9:00 - 15:00" },
+    { day: "Sa-So", hours: "Geschlossen" },
+ 
   ];
 
   return (
-    <div className="min-h-screen" ref={containerRef}>
+    <div className="min-h-screen font-montserrat" ref={containerRef}>
       <Header />
       
-      {/* Hero Section */}
+      {/* Hero Section - Increased height */}
       <section 
-        // ref={heroRef}
-        // initial={{ opacity: 0, y: 50 }}
-        // animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-        // transition={{ duration: 0.8, ease: "easeOut" }}
-        className="py-20 bg-gradient-to-br from-trust-green to-trust-green/40 text-white relative overflow-hidden"
+        className="py-6 bg-gradient-to-br from-trust-green to-trust-green/40 text-white relative overflow-hidden"
         style={{
           backgroundImage: `url(${couplehug})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center left',
           backgroundRepeat: 'no-repeat',
-          minHeight: '50vh',
+          minHeight: '62vh', // Increased from 40vh to 54vh like AboutPage
         }}
       >
+        {/* Darker overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/60"></div>
+        
         <motion.div 
           className="absolute inset-0 bg-trust-green/5"
           style={{ y }}
         ></motion.div>
-        <div className="container mx-auto px-6 text-center relative z-10 flex items-center justify-center py-20">
-        {/* <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isHeroInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-          > */}
-            {/* <motion.h1 
-              className="text-5xl md:text-6xl font-bold mb-6"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            > */}
-            <div>
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
+        <div className="container mx-auto px-6 text-center relative z-10 flex items-center justify-center py-36"> {/* Increased py-16 to py-20 */}
+          <div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg">
               Kontakt aufnehmen
-              </h1>
-            {/* </motion.h1> */}
+            </h1>
             <motion.p 
-              className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed"
+              className="text-lg md:text-xl text-white/95 max-w-3xl mx-auto leading-relaxed drop-shadow-md font-medium"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.6 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
             >
               Wir sind hier, um Ihre Fragen zu beantworten, Informationen bereitzustellen und Ihnen zu helfen, 
               zu entdecken, wie Dreieich Pflege das perfekte Zuhause für Ihren Angehörigen sein kann.
             </motion.p>
-          {/* </motion.div> */}
           </div>
         </div>
-      {/* </motion.section> */}
       </section>
 
-      {/* Emergency Contacts */}
-      {/* <motion.section 
-        ref={emergencyRef}
-        initial={{ opacity: 0 }}
-        animate={isEmergencyInView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.8 }}
-        className="py-12 bg-gradient-to-r from-red-50 to-red-100/50 border-b-2 border-red-200"
-      >
-        <div className="container mx-auto px-6">
-          <motion.div 
-            className="text-center mb-8"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isEmergencyInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <h2 className="text-2xl font-bold text-red-800 mb-2">
-              Notfallkontakte
-            </h2>
-            <p className="text-red-700">
-              Wichtige Nummern für dringende Situationen
-            </p>
-          </motion.div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            {emergencyContacts.map((contact, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                animate={isEmergencyInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: 0.4 + (index * 0.2),
-                  ease: "easeOut"
-                }}
-                whileHover={{ 
-                  y: -10,
-                  scale: 1.05,
-                  transition: { duration: 0.3 }
-                }}
-              >
-                <Card className="border-red-200 bg-white hover:shadow-lg transition-all duration-300">
-                  <CardHeader className="text-center pb-2">
-                    <motion.div 
-                      className="w-12 h-12 mx-auto mb-2 bg-red-600 rounded-full flex items-center justify-center"
-                      whileHover={{ 
-                        scale: 1.1,
-                        rotate: 5,
-                        transition: { duration: 0.3 }
-                      }}
-                      animate={{ 
-                        boxShadow: [
-                          "0 0 0 rgba(220, 38, 38, 0.2)",
-                          "0 0 20px rgba(220, 38, 38, 0.4)",
-                          "0 0 0 rgba(220, 38, 38, 0.2)"
-                        ]
-                      }}
-                      transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
-                    >
-                      <contact.icon className="w-6 h-6 text-white" />
-                    </motion.div>
-                    <CardTitle className="text-red-800">{contact.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="text-center">
-                    <motion.div 
-                      className="text-2xl font-bold text-red-900 mb-1"
-                      initial={{ scale: 0 }}
-                      animate={isEmergencyInView ? { scale: 1 } : {}}
-                      transition={{ duration: 0.5, delay: 0.6 + (index * 0.2) }}
-                    >
-                      {contact.primary}
-                    </motion.div>
-                    <div className="text-sm text-red-700">{contact.secondary}</div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section> */}
-
-      {/* Department Contacts */}
+      {/* Contact Info Section */}
       <motion.section 
-        ref={departmentsRef}
+        className="py-2 bg-white"
         initial={{ opacity: 0 }}
-        animate={isDepartmentsInView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.8 }}
-        className="py-20 bg-gradient-to-b from-background to-secondary/30"
+        animate={isHeroInView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.3 }}
       >
         <div className="container mx-auto px-6">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isDepartmentsInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Abteilungskontakte
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Verbinden Sie sich direkt mit der richtigen Abteilung für Ihre spezifischen Bedürfnisse
-            </p>
-          </motion.div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {departments.map((dept, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                animate={isDepartmentsInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: 0.4 + (index * 0.2),
-                  ease: "easeOut"
-                }}
-                whileHover={{ 
-                  y: -10,
-                  scale: 1.02,
-                  transition: { duration: 0.3 }
-                }}
-              >
-                <Card className="hover:shadow-card transition-all duration-300 hover:-translate-y-1 border-border/50">
-                  <CardHeader>
-                    <div className="flex items-center space-x-4">
-                      <motion.div 
-                        className="w-12 h-12 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-lg flex items-center justify-center"
-                        whileHover={{ 
-                          scale: 1.1,
-                          rotate: 5,
-                          transition: { duration: 0.3 }
-                        }}
-                      >
-                        <dept.icon className="w-6 h-6 text-white" />
-                      </motion.div>
-                      <CardTitle className="text-xl text-foreground">{dept.title}</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="space-y-3">
-                    {[
-                      { icon: Phone, content: dept.contact, type: "phone" },
-                      { icon: Mail, content: dept.email, type: "email" },
-                      { icon: Clock, content: dept.hours, type: "hours" }
-                    ].map((item, itemIndex) => (
-                      <motion.div 
-                        key={itemIndex}
-                        className="flex items-center space-x-3"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={isDepartmentsInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ 
-                          duration: 0.5, 
-                          delay: 0.6 + (index * 0.2) + (itemIndex * 0.1)
-                        }}
-                      >
-                        <motion.div 
-                          className={`w-4 h-4 ${item.type === 'phone' ? 'text-trust-green' : 'text-trust-green'}`}
-                          whileHover={{ 
-                            scale: 1.2,
-                            transition: { duration: 0.2 }
-                          }}
-                        >
-                          <item.icon className="w-4 h-4" />
-                        </motion.div>
-                        <span className={item.type === 'phone' ? 'font-semibold text-foreground' : 'text-muted-foreground'}>
-                          {item.content}
-                        </span>
-                      </motion.div>
-                    ))}
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+          <div className="text-center mb-2">
+            <motion.h2 
+              className="text-3xl md:text-4xl font-bold text-foreground mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.2, delay: 0.05 }}
+            >
+              Kontakt aufnehmen
+            </motion.h2>
+            <motion.p 
+              className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.2, delay: 0.1 }}
+            >
+              Wir sind hier, um Ihre Fragen zu beantworten, Informationen bereitzustellen und Ihnen zu helfen, 
+              zu entdecken, wie Dreieich Pflege das perfekte Zuhause für Ihren Angehörigen sein kann.
+            </motion.p>
           </div>
         </div>
       </motion.section>
@@ -317,27 +115,37 @@ const ContactPage = () => {
         ref={locationRef}
         initial={{ opacity: 0 }}
         animate={isLocationInView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.8 }}
-        className="py-20 bg-background"
+        transition={{ duration: 0.3 }}
+        className="py-12 bg-gradient-to-b from-background to-secondary/30"
       >
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div className="text-center mb-12">
+            <motion.h2 
+              className="text-3xl md:text-4xl font-bold text-foreground mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isLocationInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.2, delay: 0.05 }}
+            >
+              Besuchen Sie unsere Einrichtung
+            </motion.h2>
+            <motion.p 
+              className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isLocationInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.2, delay: 0.1 }}
+            >
+              Entdecken Sie unser modernes Pflegeheim in zentraler Lage in Dreieich
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Location Info */}
             <motion.div 
-              className="space-y-8"
+              className="space-y-6"
               initial={{ opacity: 0, x: -50 }}
               animate={isLocationInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.3, delay: 0.05 }}
             >
-              <motion.h2 
-                className="text-4xl font-bold text-foreground"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isLocationInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                Besuchen Sie unsere Einrichtung
-              </motion.h2>
-              
               {[
                 {
                   title: "Standort",
@@ -348,39 +156,42 @@ const ContactPage = () => {
                         Dreieich Pflege Senior Living
                       </div>
                       <div className="text-muted-foreground">
-                        Freiherr-vom-Stein-Straße 42<br />
-                        63303 Dreieich, Deutschland
+                        Freiherr-vom-Stein-Straße 42, 63303 Dreieich, Germany
                       </div>
                       <div className="pt-3">
                         <div className="text-sm text-muted-foreground mb-2">Einfach erreichbar über:</div>
                         <ul className="text-sm text-muted-foreground space-y-1">
-                          <li>• Bundesautobahn 3, Ausfahrt 42</li>
-                          <li>• Buslinie 551, 552 (Haltestelle vor Ort)</li>
                           <li>• Kostenlose Parkplätze verfügbar</li>
+                          <li>• Barrierefreier Zugang</li>
+                          <li>• Zentrale Lage in Dreieich</li>
                         </ul>
                       </div>
                     </>
                   )
                 },
                 {
-                  title: "Besuchszeiten",
+                  title: "Kontakt & Öffnungszeiten",
                   icon: Clock,
                   content: (
                     <>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-4">
                         <div>
-                          <div className="font-semibold text-foreground">Allgemeine Besuche</div>
-                          <div className="text-muted-foreground">Täglich: 8:00 - 20:00</div>
+                          <div className="font-semibold text-foreground mb-2">Telefon</div>
+                          <div className="text-lg font-bold text-trust-green">+491606397787</div>
                         </div>
+                        
                         <div>
-                          <div className="font-semibold text-foreground">Mahlzeiten</div>
-                          <div className="text-muted-foreground">Gerne zum Mitessen eingeladen</div>
-                        </div>
-                      </div>
-                      <div className="pt-3 border-t border-border">
-                        <div className="text-sm text-muted-foreground">
-                          <strong>Führungen:</strong> Täglich nach Vereinbarung verfügbar<br />
-                          <strong>Besondere Vereinbarungen:</strong> Kontaktieren Sie uns für längere Besuche
+                          <div className="font-semibold text-foreground mb-3">Öffnungszeiten</div>
+                          <div className="space-y-2">
+                            {openingHours.map((day, index) => (
+                              <div key={index} className="flex justify-between text-sm">
+                                <span className="text-foreground">{day.day}</span>
+                                <span className={day.hours === "Geschlossen" ? "text-red-600" : "text-muted-foreground"}>
+                                  {day.hours}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
                         </div>
                       </div>
                     </>
@@ -392,30 +203,30 @@ const ContactPage = () => {
                   initial={{ opacity: 0, y: 30, scale: 0.9 }}
                   animate={isLocationInView ? { opacity: 1, y: 0, scale: 1 } : {}}
                   transition={{ 
-                    duration: 0.6, 
-                    delay: 0.6 + (index * 0.2),
+                    duration: 0.2, 
+                    delay: 0.1 + (index * 0.1),
                     ease: "easeOut"
                   }}
                   whileHover={{ 
                     y: -5,
                     scale: 1.02,
-                    transition: { duration: 0.3 }
+                    transition: { duration: 0.1 }
                   }}
                 >
-                  <Card className="border-border/50">
+                  <Card className="border-border/50 hover:shadow-card transition-all duration-150 hover:-translate-y-1 bg-gradient-to-br from-white to-gray-50 shadow-sm">
                     <CardHeader>
                       <CardTitle className="flex items-center space-x-3">
                         <motion.div
-                          className="w-5 h-5 text-trust-green"
+                          className="w-12 h-12 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-lg flex items-center justify-center"
                           whileHover={{ 
-                            scale: 1.2,
+                            scale: 1.1,
                             rotate: 5,
-                            transition: { duration: 0.3 }
+                            transition: { duration: 0.1 }
                           }}
                         >
-                          <card.icon className="w-5 h-5" />
+                          <card.icon className="w-6 h-6 text-white" />
                         </motion.div>
-                        <span>{card.title}</span>
+                        <span className="text-xl text-foreground">{card.title}</span>
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
@@ -431,7 +242,7 @@ const ContactPage = () => {
               className="relative"
               initial={{ opacity: 0, scale: 0.8, rotateY: 15 }}
               animate={isLocationInView ? { opacity: 1, scale: 1, rotateY: 0 } : {}}
-              transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+              transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
             >
               <div className="bg-gradient-to-br from-card to-card/80 rounded-3xl p-6 shadow-2xl border border-border/50">
                 {/* Map Header */}
@@ -439,7 +250,7 @@ const ContactPage = () => {
                   className="flex items-center justify-between mb-6"
                   initial={{ opacity: 0, y: -20 }}
                   animate={isLocationInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.6 }}
+                  transition={{ duration: 0.2, delay: 0.15 }}
                 >
                   <div className="flex items-center space-x-3">
                     <motion.div 
@@ -447,14 +258,14 @@ const ContactPage = () => {
                       whileHover={{ 
                         scale: 1.1,
                         rotate: 5,
-                        transition: { duration: 0.3 }
+                        transition: { duration: 0.1 }
                       }}
                     >
                       <MapPin className="w-5 h-5 text-white" />
                     </motion.div>
                     <div>
                       <h3 className="text-lg font-bold text-foreground">Standort</h3>
-                      <p className="text-sm text-muted-foreground">Freiherr-vom-Stein-Straße 42, Dreieich</p>
+                      <p className="text-sm text-muted-foreground">Freiherr-vom-Stein-Straße 42, 63303 Dreieich</p>
                     </div>
                   </div>
                   <motion.button
@@ -479,78 +290,78 @@ const ContactPage = () => {
                     title="Dreieich Pflege Senior Living Location"
                   ></iframe>
                 </div>
-
-                {/* Transportation Info */}
-                <motion.div 
-                  className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isLocationInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.8 }}
-                >
-                  <motion.div 
-                    className="bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-xl p-4 border border-blue-200/50"
-                    whileHover={{ 
-                      y: -2,
-                      scale: 1.02,
-                      transition: { duration: 0.3 }
-                    }}
-                  >
-                    <div className="flex items-center space-x-3 mb-2">
-                      <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
-                        <span className="text-white text-xs font-bold">🚌</span>
-                      </div>
-                      <h4 className="font-semibold text-foreground">Öffentliche Verkehrsmittel</h4>
-                    </div>
-                    <div className="space-y-1 text-sm text-muted-foreground">
-                      <div>Bus 551, 552</div>
-                      <div>Haltestelle: Dreieich-Buchschlag</div>
-                      <div>Fahrzeit: 5-10 Min</div>
-                    </div>
-                  </motion.div>
-
-                  <motion.div 
-                    className="bg-gradient-to-br from-green-50 to-green-100/50 rounded-xl p-4 border border-green-200/50"
-                    whileHover={{ 
-                      y: -2,
-                      scale: 1.02,
-                      transition: { duration: 0.3 }
-                    }}
-                  >
-                    <div className="flex items-center space-x-3 mb-2">
-                      <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                        <span className="text-white text-xs font-bold">🚗</span>
-                      </div>
-                      <h4 className="font-semibold text-foreground">Parken</h4>
-                    </div>
-                    <div className="space-y-1 text-sm text-muted-foreground">
-                      <div>Kostenlos verfügbar</div>
-                      <div>Behindertenparkplätze</div>
-                      <div>24/7 Zugang</div>
-                    </div>
-                  </motion.div>
-
-                  <motion.div 
-                    className="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-xl p-4 border border-purple-200/50"
-                    whileHover={{ 
-                      y: -2,
-                      scale: 1.02,
-                      transition: { duration: 0.3 }
-                    }}
-                  >
-                    <div className="flex items-center space-x-3 mb-2">
-                      <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center">
-                        <span className="text-white text-xs font-bold">⏰</span>
-                      </div>
-                      <h4 className="font-semibold text-foreground">Besuchszeiten</h4>
-                    </div>
-                    <div className="space-y-1 text-sm text-muted-foreground">
-                      <div>Täglich: 8:00 - 20:00</div>
-                      <div>Führungen nach Vereinbarung</div>
-                      <div>Notfall: 24/7</div>
-                    </div>
-                  </motion.div>
-                </motion.div>
               </div>
+
+              {/* Transportation Info - Moved outside the box */}
+              <motion.div 
+                className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isLocationInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.2, delay: 0.2 }}
+              >
+                <motion.div 
+                  className="bg-gradient-to-br from-white to-gray-50 rounded-xl p-4 border border-border/50 hover:shadow-lg transition-all duration-150 shadow-sm"
+                  whileHover={{ 
+                    y: -2,
+                    scale: 1.02,
+                    transition: { duration: 0.1 }
+                  }}
+                >
+                  <div className="flex items-center space-x-3 mb-2">
+                    <div className="w-8 h-8 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-full flex items-center justify-center">
+                      <Bus className="w-4 h-4 text-white" />
+                    </div>
+                    <h4 className="font-semibold text-foreground">Öffentliche Verkehrsmittel</h4>
+                  </div>
+                  <div className="space-y-1 text-sm text-muted-foreground">
+                    <div>Bus OF-64,</div>
+                    <div>Dreieich-Sprendlingen</div>
+                    <div>Tannenweg</div>
+                  </div>
+                </motion.div>
+
+                <motion.div 
+                  className="bg-gradient-to-br from-white to-gray-50 rounded-xl p-4 border border-border/50 hover:shadow-lg transition-all duration-150 shadow-sm"
+                  whileHover={{ 
+                    y: -2,
+                    scale: 1.02,
+                    transition: { duration: 0.1 }
+                  }}
+                >
+                  <div className="flex items-center space-x-3 mb-2">
+                    <div className="w-8 h-8 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-full flex items-center justify-center">
+                      <span className="text-white text-xs font-bold">🚗</span>
+                    </div>
+                    <h4 className="font-semibold text-foreground">Parken</h4>
+                  </div>
+                  <div className="space-y-1 text-sm text-muted-foreground">
+                    <div>Kostenlos verfügbar</div>
+                    <div>Behindertenparkplätze</div>
+                    <div>24/7 Zugang</div>
+                  </div>
+                </motion.div>
+
+                <motion.div 
+                  className="bg-gradient-to-br from-white to-gray-50 rounded-xl p-4 border border-border/50 hover:shadow-lg transition-all duration-150 shadow-sm"
+                  whileHover={{ 
+                    y: -2,
+                    scale: 1.02,
+                    transition: { duration: 0.1 }
+                  }}
+                >
+                  <div className="flex items-center space-x-3 mb-2">
+                    <div className="w-8 h-8 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-full flex items-center justify-center">
+                      <span className="text-white text-xs font-bold">⏰</span>
+                    </div>
+                    <h4 className="font-semibold text-foreground">Besuchszeiten</h4>
+                  </div>
+                  <div className="space-y-1 text-sm text-muted-foreground">
+                    <div>Mo-Fr: 9:00 - 15:00</div>
+                    <div>Führungen nach Vereinbarung</div>
+                    <div>Barrierefrei</div>
+                  </div>
+                </motion.div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -561,7 +372,7 @@ const ContactPage = () => {
         ref={contactFormRef}
         initial={{ opacity: 0 }}
         animate={isContactFormInView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.3 }}
       >
         <Contact />
       </motion.div>
