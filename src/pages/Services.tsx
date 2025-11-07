@@ -11,6 +11,7 @@ import holdingHand from "@/assets/holdHand.jpg";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const services = [
   {
@@ -68,7 +69,7 @@ const specialtyServices = [
     icon: Shield,
     title: "Übergangspflege",
     description: "Unterstützung für Bewohner, die sich von Krankenhausaufenthalten erholen",
-    features: ["Post-OP-Pflege", "Medikamentenüberwachung", "Erholungsplanung", "Familienkoordination"]
+    features: ["Post-OP-Pflege", "Medikamentenüberwachung", "Erholungsplaning", "Familienkoordination"]
   },
   {
     icon: Home,
@@ -88,6 +89,7 @@ const Services = () => {
 
   const heroRef = useRef(null);
   const isHeroInView = useInView(heroRef, { once: true, margin: "-100px" });
+  const isMobile = useIsMobile();
 
   const servicesRef = useRef(null);
   const isServicesInView = useInView(servicesRef, { once: true, margin: "-50px" });
@@ -114,13 +116,13 @@ const Services = () => {
       
       {/* Hero Section */}
       <section 
-        className="py-20 bg-gradient-to-br from-trust-green to-trust-green/90 text-white relative overflow-hidden" 
+        className="py-16 md:py-20 bg-gradient-to-br from-trust-green to-trust-green/90 text-white relative overflow-hidden" 
         style={{
           backgroundImage: `url(${outdoor})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center left',
           backgroundRepeat: 'no-repeat',
-          minHeight: '46vh',
+          minHeight: '40vh',
         }}
       >
         {/* Dark overlay for better text readability */}
@@ -130,10 +132,10 @@ const Services = () => {
           className="absolute inset-0 bg-trust-green/5"
           style={{ y }}
         ></motion.div>
-        <div className="container mx-auto px-6 text-center relative z-10 flex items-center justify-center py-20">
-          <div>
+        <div className="container mx-auto px-4 sm:px-6 text-center relative z-10 flex items-center justify-center py-12 md:py-20">
+          <div className="max-w-4xl">
             <motion.h1 
-              className="text-5xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-white drop-shadow-lg leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
@@ -141,7 +143,7 @@ const Services = () => {
               Umfassende Pflegedienste
             </motion.h1>
             <motion.p 
-              className="text-xl md:text-2xl text-white/95 max-w-3xl mx-auto leading-relaxed drop-shadow-md font-medium"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 mx-auto leading-relaxed drop-shadow-md font-medium px-4 sm:px-0"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
@@ -160,24 +162,24 @@ const Services = () => {
         initial={{ opacity: 0 }}
         animate={isServicesInView ? { opacity: 1 } : {}}
         transition={{ duration: 0.8 }}
-        className="py-20 bg-gradient-to-b from-background to-secondary/30"
+        className="py-12 md:py-20 bg-gradient-to-b from-background to-secondary/30"
       >
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div 
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
             initial={{ opacity: 0, y: 30 }}
             animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 md:mb-4">
               Kernpflegedienste
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4 sm:px-0">
               Unsere grundlegenden Dienstleistungen bilden die Grundlage für außergewöhnliche Seniorenpflege
             </p>
           </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {services.map((service, index) => (
               <motion.div
                 key={index}
@@ -193,31 +195,32 @@ const Services = () => {
                   scale: 1.02,
                   transition: { duration: 0.3 }
                 }}
+                className="h-full"
               >
                 <Card className="group hover:shadow-card transition-all duration-300 border-border/50 h-full bg-gradient-to-br from-white to-gray-50">
-                  <CardHeader className="text-center">
+                  <CardHeader className="text-center px-4 sm:px-6 pt-6">
                     <motion.div 
-                      className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-full flex items-center justify-center"
+                      className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 md:mb-4 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-full flex items-center justify-center"
                       whileHover={{ 
                         scale: 1.1,
                         rotate: 5,
                         transition: { duration: 0.3 }
                       }}
                     >
-                      <service.icon className="w-8 h-8 text-white" />
+                      <service.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white" />
                     </motion.div>
-                    <CardTitle className="text-xl text-foreground">{service.title}</CardTitle>
+                    <CardTitle className="text-lg sm:text-xl md:text-xl text-foreground">{service.title}</CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-center text-muted-foreground leading-relaxed mb-4">
+                  <CardContent className="px-4 sm:px-6 pb-6">
+                    <CardDescription className="text-center text-muted-foreground leading-relaxed mb-3 md:mb-4 text-sm sm:text-base">
                       {service.description}
                     </CardDescription>
-                    <ul className="space-y-2">
+                    <ul className="space-y-1 sm:space-y-2">
                       {service.details.map((detail, detailIndex) => (
                         <motion.li 
                           key={detailIndex} 
-                          className="flex items-center space-x-2 text-sm"
-                          initial={{ opacity: 0, x: -20 }}
+                          className="flex items-start space-x-2 text-xs sm:text-sm"
+                          initial={{ opacity: 0,  }}
                           animate={isServicesInView ? { opacity: 1, x: 0 } : {}}
                           transition={{ 
                             duration: 0.4, 
@@ -225,7 +228,7 @@ const Services = () => {
                           }}
                         >
                           <motion.div 
-                            className="w-1.5 h-1.5 bg-trust-green rounded-full"
+                            className="w-1.5 h-1.5 bg-trust-green rounded-full mt-1 flex-shrink-0"
                             animate={{ scale: [1, 1.2, 1] }}
                             transition={{ duration: 2, repeat: Infinity, delay: detailIndex * 0.2 }}
                           ></motion.div>
@@ -247,29 +250,29 @@ const Services = () => {
         initial={{ opacity: 0 }}
         animate={isSpecialtyInView ? { opacity: 1 } : {}}
         transition={{ duration: 0.8 }}
-        className="py-20 bg-background"
+        className="py-12 md:py-20 bg-background"
       >
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <motion.div 
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
             initial={{ opacity: 0, y: 30 }}
             animate={isSpecialtyInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 md:mb-4">
               Spezialpflegeprogramme
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4 sm:px-0">
               Fortgeschrittene Programme, die für spezifische Pflegebedürfnisse und Erholungsziele entwickelt wurden
             </p>
           </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {specialtyServices.map((service, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                animate={isSpecialtyInView ? { opacity: 1, x: 0 } : {}}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isSpecialtyInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ 
                   duration: 0.6, 
                   delay: 0.3 + (index * 0.15),
@@ -280,32 +283,33 @@ const Services = () => {
                   scale: 1.02,
                   transition: { duration: 0.3 }
                 }}
+                className="h-full"
               >
                 <Card className="group hover:shadow-card transition-all duration-300 border-border/50 h-full bg-gradient-to-br from-white to-gray-50">
-                  <CardHeader>
-                    <div className="flex items-center space-x-4">
+                  <CardHeader className="px-4 sm:px-6 pt-6">
+                    <div className="flex items-center space-x-3 md:space-x-4">
                       <motion.div 
-                        className="w-12 h-12 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-lg flex items-center justify-center"
+                        className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-lg flex items-center justify-center flex-shrink-0"
                         whileHover={{ 
                           scale: 1.1,
                           rotate: 5,
                           transition: { duration: 0.3 }
                         }}
                       >
-                        <service.icon className="w-6 h-6 text-white" />
+                        <service.icon className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" />
                       </motion.div>
                       <div>
-                        <CardTitle className="text-2xl text-foreground">{service.title}</CardTitle>
+                        <CardTitle className="text-xl sm:text-2xl md:text-2xl text-foreground">{service.title}</CardTitle>
                       </div>
                     </div>
                   </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground leading-relaxed mb-4">{service.description}</p>
-                    <div className="grid grid-cols-2 gap-2">
+                  <CardContent className="px-4 sm:px-6 pb-6">
+                    <p className="text-muted-foreground leading-relaxed mb-3 md:mb-4 text-sm sm:text-base">{service.description}</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {service.features.map((feature, featureIndex) => (
                         <motion.div 
                           key={featureIndex} 
-                          className="flex items-center space-x-2 text-sm"
+                          className="flex items-start space-x-2 text-xs sm:text-sm"
                           initial={{ opacity: 0, y: 20 }}
                           animate={isSpecialtyInView ? { opacity: 1, y: 0 } : {}}
                           transition={{ 
@@ -314,7 +318,7 @@ const Services = () => {
                           }}
                         >
                           <motion.div 
-                            className="w-1.5 h-1.5 bg-trust-green rounded-full"
+                            className="w-1.5 h-1.5 bg-trust-green rounded-full mt-1 flex-shrink-0"
                             animate={{ scale: [1, 1.3, 1] }}
                             transition={{ duration: 2, repeat: Infinity, delay: featureIndex * 0.3 }}
                           ></motion.div>
@@ -336,90 +340,19 @@ const Services = () => {
         initial={{ opacity: 0 }}
         animate={isHighlightsInView ? { opacity: 1 } : {}}
         transition={{ duration: 0.8 }}
-        className="py-20 bg-gradient-to-b from-secondary/30 to-background"
+        className="py-12 md:py-20 bg-gradient-to-b from-secondary/30 to-background"
       >
-        <div className="container mx-auto px-6">
-          <div className="space-y-20">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="space-y-12 md:space-y-20">
             {/* Dining Services */}
             <motion.div 
-              className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+              className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center"
               initial={{ opacity: 0, y: 50 }}
               animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <motion.div 
-                className="space-y-6"
-                initial={{ opacity: 0, x: -30 }}
-                animate={isHighlightsInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                <motion.div 
-                  className="flex items-center space-x-3"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={isHighlightsInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.6 }}
-                >
-                  <motion.div 
-                    className="w-8 h-8 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-full flex items-center justify-center"
-                    whileHover={{ 
-                      scale: 1.1,
-                      rotate: 5,
-                      transition: { duration: 0.3 }
-                    }}
-                  >
-                    <Utensils className="w-4 h-4 text-white" />
-                  </motion.div>
-                  <span className="text-trust-green font-semibold">Kulinarische Exzellenz</span>
-                </motion.div>
-                <motion.h3 
-                  className="text-3xl font-bold text-foreground"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.8 }}
-                >
-                  Gourmet-Dining-Erlebnis
-                </motion.h3>
-                <motion.p 
-                  className="text-lg text-muted-foreground leading-relaxed"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 1.0 }}
-                >
-                  Unser professionelles Küchenteam erstellt köstliche, ernährungsphysiologisch ausgewogene Mahlzeiten 
-                  mit frischen, lokal bezogenen Zutaten. Besondere Ernährungsbedürfnisse und Vorlieben 
-                  werden sorgfältig berücksichtigt.
-                </motion.p>
-                <motion.ul 
-                  className="space-y-3"
-                  initial={{ opacity: 0 }}
-                  animate={isHighlightsInView ? { opacity: 1 } : {}}
-                  transition={{ duration: 0.4, delay: 1.2 }}
-                >
-                  {[
-                    "Täglich zubereitete Menüs vom Koch",
-                    "Besondere Diätanpassungen", 
-                    "Flexible Essenszeiten"
-                  ].map((item, index) => (
-                    <motion.li 
-                      key={index}
-                      className="flex items-center space-x-3"
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={isHighlightsInView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.4, delay: 1.4 + (index * 0.15) }}
-                    >
-                      <motion.div 
-                        className="w-2 h-2 bg-trust-green rounded-full"
-                        animate={{ scale: [1, 1.3, 1] }}
-                        transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
-                      ></motion.div>
-                      <span className="text-foreground">{item}</span>
-                    </motion.li>
-                  ))}
-                </motion.ul>
-              </motion.div>
-              
-              <motion.div 
-                className="relative"
+                className="relative order-1 lg:order-2"
                 initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
                 animate={isHighlightsInView ? { opacity: 1, scale: 1, rotateY: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
@@ -429,7 +362,7 @@ const Services = () => {
                 }}
               >
                 <motion.div 
-                  className="absolute -top-4 -left-4 w-full h-full bg-gradient-to-br from-trust-green/20 to-transparent rounded-2xl"
+                  className="absolute -top-2 -left-2 sm:-top-3 sm:-left-3 md:-top-4 md:-left-4 w-full h-full bg-gradient-to-br from-trust-green/20 to-transparent rounded-xl sm:rounded-2xl"
                   animate={{ 
                     boxShadow: [
                       "0 0 0 rgba(34, 197, 94, 0.2)",
@@ -442,20 +375,91 @@ const Services = () => {
                 <img 
                   src={diningImage} 
                   alt="Speisesaal"
-                  className="relative rounded-2xl shadow-card w-full h-80 object-cover"
+                  className="relative rounded-xl sm:rounded-2xl shadow-card w-full h-48 sm:h-64 md:h-80 object-cover"
                 />
+              </motion.div>
+              
+              <motion.div 
+                className="space-y-4 md:space-y-6 order-2 lg:order-1"
+                initial={{ opacity: 0}}
+                animate={isHighlightsInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                <motion.div 
+                  className="flex items-center space-x-3"
+                  initial={{ opacity: 0 }}
+                  animate={isHighlightsInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.4, delay: 0.6 }}
+                >
+                  <motion.div 
+                    className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-full flex items-center justify-center flex-shrink-0"
+                    whileHover={{ 
+                      scale: 1.1,
+                      rotate: 5,
+                      transition: { duration: 0.3 }
+                    }}
+                  >
+                    <Utensils className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                  </motion.div>
+                  <span className="text-trust-green font-semibold text-sm sm:text-base">Kulinarische Exzellenz</span>
+                </motion.div>
+                <motion.h3 
+                  className="text-2xl sm:text-3xl md:text-3xl font-bold text-foreground"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.4, delay: 0.8 }}
+                >
+                  Gourmet-Dining-Erlebnis
+                </motion.h3>
+                <motion.p 
+                  className="text-base sm:text-lg text-muted-foreground leading-relaxed"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.4, delay: 1.0 }}
+                >
+                  Unser professionelles Küchenteam erstellt köstliche, ernährungsphysiologisch ausgewogene Mahlzeiten 
+                  mit frischen, lokal bezogenen Zutaten. Besondere Ernährungsbedürfnisse und Vorlieben 
+                  werden sorgfältig berücksichtigt.
+                </motion.p>
+                <motion.ul 
+                  className="space-y-2 md:space-y-3"
+                  initial={{ opacity: 0 }}
+                  animate={isHighlightsInView ? { opacity: 1 } : {}}
+                  transition={{ duration: 0.4, delay: 1.2 }}
+                >
+                  {[
+                    "Täglich zubereitete Menüs vom Koch",
+                    "Besondere Diätanpassungen", 
+                    "Flexible Essenszeiten"
+                  ].map((item, index) => (
+                    <motion.li 
+                      key={index}
+                      className="flex items-start space-x-3"
+                      initial={{ opacity: 0 }}
+                      animate={isHighlightsInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ duration: 0.4, delay: 1.4 + (index * 0.15) }}
+                    >
+                      <motion.div 
+                        className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-trust-green rounded-full mt-1 flex-shrink-0"
+                        animate={{ scale: [1, 1.3, 1] }}
+                        transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
+                      ></motion.div>
+                      <span className="text-foreground text-sm sm:text-base">{item}</span>
+                    </motion.li>
+                  ))}
+                </motion.ul>
               </motion.div>
             </motion.div>
 
             {/* Rehabilitation */}
             <motion.div 
-              className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+              className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center"
               initial={{ opacity: 0, y: 50 }}
               animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <motion.div 
-                className="relative order-2 lg:order-1"
+                className="relative order-1 lg:order-1"
                 initial={{ opacity: 0, scale: 0.8, rotateY: 15 }}
                 animate={isHighlightsInView ? { opacity: 1, scale: 1, rotateY: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
@@ -465,7 +469,7 @@ const Services = () => {
                 }}
               >
                 <motion.div 
-                  className="absolute -top-4 -right-4 w-full h-full bg-gradient-to-br from-trust-green/20 to-transparent rounded-2xl"
+                  className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 md:-top-4 md:-right-4 w-full h-full bg-gradient-to-br from-trust-green/20 to-transparent rounded-xl sm:rounded-2xl"
                   animate={{ 
                     boxShadow: [
                       "0 0 0 rgba(34, 197, 94, 0.2)",
@@ -478,36 +482,36 @@ const Services = () => {
                 <img 
                   src={rehabImage} 
                   alt="Rehabilitationsraum"
-                  className="relative rounded-2xl shadow-card w-full h-80 object-cover"
+                  className="relative rounded-xl sm:rounded-2xl shadow-card w-full h-48 sm:h-64 md:h-80 object-cover"
                 />
               </motion.div>
               
               <motion.div 
-                className="space-y-6 order-1 lg:order-2"
-                initial={{ opacity: 0, x: 30 }}
+                className="space-y-4 md:space-y-6 order-2 lg:order-2"
+                initial={{ opacity: 0}}
                 animate={isHighlightsInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.8 }}
               >
                 <motion.div 
                   className="flex items-center space-x-3"
-                  initial={{ opacity: 0, x: 20 }}
+                  initial={{ opacity: 0 }}
                   animate={isHighlightsInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.4, delay: 1.0 }}
                 >
                   <motion.div 
-                    className="w-8 h-8 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-full flex items-center justify-center"
+                    className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-full flex items-center justify-center flex-shrink-0"
                     whileHover={{ 
                       scale: 1.1,
                       rotate: 5,
                       transition: { duration: 0.3 }
                     }}
                   >
-                    <Dumbbell className="w-4 h-4 text-white" />
+                    <Dumbbell className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                   </motion.div>
-                  <span className="text-trust-green font-semibold">Erholung & Wohlbefinden</span>
+                  <span className="text-trust-green font-semibold text-sm sm:text-base">Erholung & Wohlbefinden</span>
                 </motion.div>
                 <motion.h3 
-                  className="text-3xl font-bold text-foreground"
+                  className="text-2xl sm:text-3xl md:text-3xl font-bold text-foreground"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.4, delay: 1.2 }}
@@ -515,7 +519,7 @@ const Services = () => {
                   Rehabilitation & Therapie
                 </motion.h3>
                 <motion.p 
-                  className="text-lg text-muted-foreground leading-relaxed"
+                  className="text-base sm:text-lg text-muted-foreground leading-relaxed"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.4, delay: 1.4 }}
@@ -529,37 +533,65 @@ const Services = () => {
 
             {/* Activities */}
             <motion.div 
-              className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+              className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center"
               initial={{ opacity: 0, y: 50 }}
               animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <motion.div 
-                className="space-y-6"
-                initial={{ opacity: 0, x: -30 }}
+                className="relative order-1 lg:order-2"
+                initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
+                animate={isHighlightsInView ? { opacity: 1, scale: 1, rotateY: 0 } : {}}
+                transition={{ duration: 0.8, delay: 1.0, ease: "easeOut" }}
+                whileHover={{ 
+                  scale: 1.05,
+                  transition: { duration: 0.4 }
+                }}
+              >
+                <motion.div 
+                  className="absolute -top-2 -left-2 sm:-top-3 sm:-left-3 md:-top-4 md:-left-4 w-full h-full bg-gradient-to-br from-trust-green/20 to-transparent rounded-xl sm:rounded-2xl"
+                  animate={{ 
+                    boxShadow: [
+                      "0 0 0 rgba(34, 197, 94, 0.2)",
+                      "0 0 20px rgba(34, 197, 94, 0.4)",
+                      "0 0 0 rgba(34, 197, 94, 0.2)"
+                    ]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
+                ></motion.div>
+                <img 
+                  src={activitiesImage} 
+                  alt="Aktivitätsprogramme"
+                  className="relative rounded-xl sm:rounded-2xl shadow-card w-full h-48 sm:h-64 md:h-80 object-cover"
+                />
+              </motion.div>
+              
+              <motion.div 
+                className="space-y-4 md:space-y-6 order-2 lg:order-1"
+                initial={{ opacity: 0}}
                 animate={isHighlightsInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.8 }}
               >
                 <motion.div 
                   className="flex items-center space-x-3"
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0}}
                   animate={isHighlightsInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.4, delay: 1.0 }}
                 >
                   <motion.div 
-                    className="w-8 h-8 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-full flex items-center justify-center"
+                    className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-full flex items-center justify-center flex-shrink-0"
                     whileHover={{ 
                       scale: 1.1,
                       rotate: 5,
                       transition: { duration: 0.3 }
                     }}
                   >
-                    <Activity className="w-4 h-4 text-white" />
+                    <Activity className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                   </motion.div>
-                  <span className="text-trust-green font-semibold">Bereicherungsprogramme</span>
+                  <span className="text-trust-green font-semibold text-sm sm:text-base">Bereicherungsprogramme</span>
                 </motion.div>
                 <motion.h3 
-                  className="text-3xl font-bold text-foreground"
+                  className="text-2xl sm:text-3xl md:text-3xl font-bold text-foreground"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.4, delay: 1.2 }}
@@ -567,7 +599,7 @@ const Services = () => {
                   Tägliche Aktivitäten & Programme
                 </motion.h3>
                 <motion.p 
-                  className="text-lg text-muted-foreground leading-relaxed"
+                  className="text-base sm:text-lg text-muted-foreground leading-relaxed"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.4, delay: 1.4 }}
@@ -576,7 +608,7 @@ const Services = () => {
                   und persönliche Erfüllung durch eine Vielzahl von Freizeit- und Bildungsmöglichkeiten.
                 </motion.p>
                 <motion.div 
-                  className="grid grid-cols-3 gap-4"
+                  className="grid grid-cols-3 gap-3 sm:gap-4"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isHighlightsInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.4, delay: 1.6 }}
@@ -599,47 +631,19 @@ const Services = () => {
                       }}
                     >
                       <motion.div 
-                        className="w-12 h-12 mx-auto mb-2 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-lg flex items-center justify-center"
+                        className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 mx-auto mb-2 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-lg flex items-center justify-center"
                         whileHover={{ 
                           scale: 1.1,
                           rotate: 5,
                           transition: { duration: 0.3 }
                         }}
                       >
-                        <activity.icon className="w-6 h-6 text-white" />
+                        <activity.icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" />
                       </motion.div>
-                      <div className="text-sm text-foreground font-medium">{activity.label}</div>
+                      <div className="text-xs sm:text-sm text-foreground font-medium leading-tight">{activity.label}</div>
                     </motion.div>
                   ))}
                 </motion.div>
-              </motion.div>
-              
-              <motion.div 
-                className="relative"
-                initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
-                animate={isHighlightsInView ? { opacity: 1, scale: 1, rotateY: 0 } : {}}
-                transition={{ duration: 0.8, delay: 1.0, ease: "easeOut" }}
-                whileHover={{ 
-                  scale: 1.05,
-                  transition: { duration: 0.4 }
-                }}
-              >
-                <motion.div 
-                  className="absolute -top-4 -left-4 w-full h-full bg-gradient-to-br from-trust-green/20 to-transparent rounded-2xl"
-                  animate={{ 
-                    boxShadow: [
-                      "0 0 0 rgba(34, 197, 94, 0.2)",
-                      "0 0 20px rgba(34, 197, 94, 0.4)",
-                      "0 0 0 rgba(34, 197, 94, 0.2)"
-                    ]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
-                ></motion.div>
-                <img 
-                  src={activitiesImage} 
-                  alt="Aktivitätsprogramme"
-                  className="relative rounded-2xl shadow-card w-full h-80 object-cover"
-                />
               </motion.div>
             </motion.div>
           </div>
@@ -652,7 +656,7 @@ const Services = () => {
         initial={{ opacity: 0 }}
         animate={isCtaInView ? { opacity: 1 } : {}}
         transition={{ duration: 0.8 }}
-        className="py-20 bg-gradient-to-r from-trust-green to-trust-green/90 text-white relative"
+        className="py-12 md:py-20 bg-gradient-to-r from-trust-green to-trust-green/90 text-white relative"
         style={{
           backgroundImage: `url(${holdingHand})`,
           backgroundSize: 'cover',
@@ -663,14 +667,14 @@ const Services = () => {
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black/40"></div>
         
-        <div className="container mx-auto px-6 text-center relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 text-center relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <motion.h2 
-              className="text-4xl font-bold mb-6 text-white"
+              className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-white"
               initial={{ opacity: 0, y: 20 }}
               animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: 0.4 }}
@@ -678,7 +682,7 @@ const Services = () => {
               Bereit, mehr über unsere Dienste zu erfahren?
             </motion.h2>
             <motion.p 
-              className="text-xl text-white/95 mb-8 max-w-2xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-white/95 mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed px-4 sm:px-0"
               initial={{ opacity: 0, y: 20 }}
               animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: 0.6 }}
@@ -701,7 +705,7 @@ const Services = () => {
               >
                 <Button 
                   size="lg" 
-                  className="text-lg px-8 py-6 bg-white text-trust-green hover:bg-gray-100 font-semibold border-2 border-white transition-all duration-300 shadow-lg"
+                  className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 bg-white text-trust-green hover:bg-gray-100 font-semibold border-2 border-white transition-all duration-300 shadow-lg"
                   onClick={handleContactClick}
                 >
                   Kontaktieren Sie uns
