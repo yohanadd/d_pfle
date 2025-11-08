@@ -4,6 +4,7 @@ import About from "@/components/About";
 import Services from "@/components/Services";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import TeamSection from "@/components/TeamSection";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <Hero />
       <About />
       <Services />
+      <TeamSection/>
       {/* <Contact /> */}
       <Footer />
     </div>
