@@ -1,9 +1,11 @@
-import { Users, Award, Star, Calendar, ShieldCheck, Heart, Clock, ArrowRight, Phone } from "lucide-react";
+import { Users, Award, Star, Calendar, ShieldCheck, Heart, Clock, ArrowRight, Phone, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import magdalenaImage from '@/assets/co-founder.jpeg';
+import { motion } from "framer-motion";
+import magdalenaImage from "@/assets/_ (1).jpeg";
+import puneetImage from "@/assets/ismim.jpeg"; // Add Puneet's image
 
 const AnimatedCounter = ({ target, duration = 2000 }) => {
   const [count, setCount] = useState(0);
@@ -36,35 +38,40 @@ const AnimatedCounter = ({ target, duration = 2000 }) => {
   return { count, startAnimation };
 };
 
-// Team Section Component
 const TeamSection = () => {
   const statsRef = useRef(null);
   const isStatsInView = useInView(statsRef, { once: true, margin: "-100px" });
+  const teamRef = useRef(null);
+  const isTeamInView = useInView(teamRef, { once: true, margin: "-100px" });
+  const ctaRef = useRef(null);
+  const isCtaInView = useInView(ctaRef, { once: true, margin: "-100px" });
+
+  const handleLearnMoreClick = () => {
+    // Handle learn more click logic here
+    console.log("Learn more clicked");
+  };
+
+  const handleContactClick = () => {
+    // Handle contact click logic here
+    console.log("Contact clicked");
+  };
 
   const teamStats = [
-    {
-      icon: Users,
-      target: 50,
-      suffix: "+",
-      label: "Experienced employees",
-      description: "Qualified nursing staff",
-      duration: 2000
-    },
     {
       icon: Award,
       target: 25,
       suffix: "+",
       label: "Years of experience",
       description: "In outpatient care",
-      duration: 2000
+      duration: 2000,
     },
     {
       icon: Star,
-      target: 98,
+      target: 100,
       suffix: "%",
       label: "Satisfaction",
       description: "Our customers rate us",
-      duration: 2000
+      duration: 2000,
     },
     {
       icon: Clock,
@@ -72,8 +79,8 @@ const TeamSection = () => {
       suffix: "/7",
       label: "Availability",
       description: "Available for you around the clock",
-      duration: 2000
-    }
+      duration: 2000,
+    },
   ];
 
   const teamMembers = [
@@ -83,8 +90,9 @@ const TeamSection = () => {
       qualification: "Examinierte Altenpflegerin",
       experience: "15+ Jahre Erfahrung",
       specialties: ["Pflegemanagement", "Qualitätssicherung", "Teamleitung"],
-      description: "Mit über 15 Jahren Erfahrung in der Pflegebranche bringt Magdalena umfassendes Fachwissen und Leidenschaft für die Betreuung älterer Menschen mit. Ihre Expertise in Pflegemanagement und Qualitätssicherung garantiert höchste Standards in der Patientenversorgung.",
-      image: magdalenaImage
+      description:
+        "Mit über 15 Jahren Erfahrung in der Pflegebranche bringt Magdalena umfassendes Fachwissen und Leidenschaft für die Betreuung älterer Menschen mit. Ihre Expertise in Pflegemanagement und Qualitätssicherung garantiert höchste Standards in der Patientenversorgung.",
+      image: magdalenaImage,
     },
     {
       name: "Puneet Kaur Parmar",
@@ -92,105 +100,240 @@ const TeamSection = () => {
       qualification: "Krankenschwester",
       experience: "12+ Jahre Erfahrung",
       specialties: ["Medizinische Pflege", "Ausbildung", "Pflegeplanung"],
-      description: "Puneet verfügt über 12 Jahre Erfahrung als Krankenschwester und kombiniert medizinisches Fachwissen mit empathischer Patientenbetreuung. Ihr Fokus liegt auf der kontinuierlichen Weiterbildung des Teams und der Entwicklung individueller Pflegekonzepte.",
-      image: magdalenaImage
-    }
+      description:
+        "Puneet verfügt über 12 Jahre Erfahrung als Krankenschwester und kombiniert medizinisches Fachwissen mit empathischer Patientenbetreuung. Ihr Fokus liegt auf der kontinuierlichen Weiterbildung des Teams und der Entwicklung individueller Pflegekonzepte.",
+      image: puneetImage,
+    },
   ];
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50 
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 30,
+      scale: 0.95
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const statsVariants = {
+    hidden: { 
+      opacity: 0, 
+      scale: 0.8 
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const fadeInUp = {
+    hidden: { 
+      opacity: 0, 
+      y: 30 
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
 
   return (
     <section className="py-16 md:py-20 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-4 sm:px-6">
         {/* Section Header */}
-        <div className="text-center mb-12 md:mb-16">
-          <div className="inline-flex items-center space-x-2 bg-trust-green/10 text-trust-green px-4 py-2 rounded-full text-sm font-medium mb-4">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+          className="text-center mb-12 md:mb-16"
+        >
+          <motion.div 
+            variants={itemVariants}
+            className="inline-flex items-center space-x-2 bg-trust-green/10 text-trust-green px-4 py-2 rounded-full text-sm font-medium mb-4"
+          >
             <Users className="w-4 h-4" />
             <span>Unser Team</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          </motion.div>
+          <motion.h2 
+            variants={itemVariants}
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+          >
             Vertrauen Sie den Experten
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            variants={itemVariants}
+            className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto"
+          >
             Erfahrene Fachkräfte mit Leidenschaft für die Pflege - seit über 25 Jahren vertrauen uns Familien in der Region
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        {/* Team Members Grid - Increased Gap Between Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 max-w-4xl mx-auto">
+        {/* Team Members Grid - 2 columns on desktop */}
+        <motion.div
+          ref={teamRef}
+          initial="hidden"
+          animate={isTeamInView ? "visible" : "hidden"}
+          variants={containerVariants}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16 max-w-4xl mx-auto"
+        >
           {teamMembers.map((member, index) => (
-            <div 
+            <motion.div
               key={index}
+              variants={cardVariants}
+              whileHover={{ 
+                y: -5,
+                transition: { duration: 0.2 }
+              }}
               className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 group flex flex-col h-full"
             >
-              {/* Image Section with Actual Photos */}
-              <div className="h-80 relative overflow-hidden bg-gray-100">
-                <img 
-                  src={member.image} 
+              {/* Image Section */}
+              <motion.div 
+                className="h-80 relative overflow-hidden bg-gray-100"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <img
+                  src={member.image}
                   alt={member.name}
-                  className="w-full h-full object-fill group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full border border-trust-green/20 shadow-sm">
-                  <span className="text-sm font-semibold text-trust-green">Co-Founder</span>
-                </div>
-              </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                <motion.div 
+                  className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full border border-trust-green/30 shadow-md"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.5 + index * 0.1, duration: 0.3 }}
+                >
+                  <span className="text-sm font-bold text-trust-green">
+                    Geschäftsführung
+                  </span>
+                </motion.div>
+              </motion.div>
 
               {/* Content Section */}
               <div className="p-6 flex-1 flex flex-col">
-                {/* Member Header */}
+                {/* Name and Role */}
                 <div className="text-center mb-4">
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">
+                  <motion.h3 
+                    className="text-xl font-bold text-gray-900 mb-1"
+                    whileHover={{ color: "#059669" }}
+                    transition={{ duration: 0.2 }}
+                  >
                     {member.name}
-                  </h3>
-                  <p className="text-trust-green font-semibold text-sm mb-2">
+                  </motion.h3>
+                  <motion.p 
+                    className="text-trust-green font-semibold text-sm mb-3"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.2 }}
+                  >
                     {member.role}
-                  </p>
-                  <div className="flex flex-col sm:flex-row items-center justify-center space-y-1 sm:space-y-0 sm:space-x-4 text-xs text-gray-600">
-                    <span className="flex items-center space-x-1">
-                      <Award className="w-3 h-3" />
-                      <span>{member.qualification}</span>
-                    </span>
-                    <span className="flex items-center space-x-1">
-                      <Calendar className="w-3 h-3" />
-                      <span>{member.experience}</span>
-                    </span>
-                  </div>
+                  </motion.p>
+                  
+                  {/* Qualifications */}
+                  <motion.div 
+                    className="flex flex-col items-center justify-center space-y-2 text-sm"
+                    variants={containerVariants}
+                  >
+                    <motion.div 
+                      variants={itemVariants}
+                      className="flex items-center space-x-2 bg-trust-green/5 px-3 py-1 rounded-full"
+                      whileHover={{ scale: 1.05, backgroundColor: "rgba(5, 150, 105, 0.1)" }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Award className="w-4 h-4 text-trust-green" />
+                      <span className="text-gray-700 font-medium">{member.qualification}</span>
+                    </motion.div>
+                    <motion.div 
+                      variants={itemVariants}
+                      className="flex items-center space-x-2 bg-trust-green/5 px-3 py-1 rounded-full"
+                      whileHover={{ scale: 1.05, backgroundColor: "rgba(5, 150, 105, 0.1)" }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Calendar className="w-4 h-4 text-trust-green" />
+                      <span className="text-gray-700 font-medium">{member.experience}</span>
+                    </motion.div>
+                  </motion.div>
                 </div>
 
                 {/* Description */}
-                <div className="mb-4 flex-1">
-                  <p className="text-gray-600 text-xs leading-relaxed text-center">
+                <motion.div 
+                  className="mb-6 flex-1"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.8 + index * 0.1 }}
+                >
+                  <p className="text-gray-600 text-sm leading-relaxed text-center">
                     {member.description}
                   </p>
-                </div>
-
-                {/* Specialties */}
-                <div className="space-y-2">
-                  <h4 className="font-semibold text-gray-900 text-xs text-center">Spezialgebiete:</h4>
-                  <div className="flex flex-wrap gap-1 justify-center">
-                    {member.specialties.map((specialty, specialtyIndex) => (
-                      <span 
-                        key={specialtyIndex}
-                        className="px-2 py-1 bg-trust-green/10 text-trust-green rounded-full text-xs font-medium"
-                      >
-                        {specialty}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                </motion.div>
               </div>
 
               {/* Decorative Bottom Border */}
-              <div className="h-1 bg-gradient-to-r from-trust-green to-trust-green/80"></div>
-            </div>
+              <motion.div 
+                className="h-1.5 bg-gradient-to-r from-trust-green to-trust-green/70"
+                whileInView={{ width: "100%" }}
+                initial={{ width: "0%" }}
+                transition={{ delay: 1 + index * 0.1, duration: 0.5 }}
+                viewport={{ once: true }}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Animated Team Statistics */}
-        <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+        {/* Team Stats */}
+        <motion.div
+          ref={statsRef}
+          initial="hidden"
+          animate={isStatsInView ? "visible" : "hidden"}
+          variants={containerVariants}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
+        >
           {teamStats.map((stat, index) => {
             const { count, startAnimation } = AnimatedCounter({
               target: stat.target,
-              duration: stat.duration
+              duration: stat.duration,
             });
 
             if (isStatsInView) {
@@ -198,53 +341,136 @@ const TeamSection = () => {
             }
 
             return (
-              <div 
+              <motion.div
                 key={index}
-                className="text-center p-6 bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 group"
+                variants={statsVariants}
+                whileHover={{ 
+                  scale: 1.05,
+                  y: -5,
+                  transition: { duration: 0.2 }
+                }}
+                className="text-center p-6 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 group"
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <stat.icon className="w-6 h-6 text-white" />
-                </div>
-                <div className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-                  {count}{stat.suffix}
-                </div>
-                <div className="font-semibold text-gray-800 mb-1 text-sm">{stat.label}</div>
-                <p className="text-xs text-gray-600">{stat.description}</p>
-              </div>
+                <motion.div 
+                  className="w-14 h-14 bg-gradient-to-br from-trust-green to-trust-green/80 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-md"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <stat.icon className="w-7 h-7 text-white" />
+                </motion.div>
+                <motion.div 
+                  className="text-2xl md:text-3xl font-bold text-gray-900 mb-2"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.3 + index * 0.1, type: "spring", stiffness: 100 }}
+                >
+                  {count}
+                  {stat.suffix}
+                </motion.div>
+                <motion.div 
+                  className="font-bold text-gray-800 mb-1 text-sm"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5 + index * 0.1 }}
+                >
+                  {stat.label}
+                </motion.div>
+                <motion.p 
+                  className="text-xs text-gray-600 font-medium"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.7 + index * 0.1 }}
+                >
+                  {stat.description}
+                </motion.p>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* CTA Section */}
-        <div className="text-center">
-          <div className="mb-6">
-            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+        <motion.div
+          ref={ctaRef}
+          initial="hidden"
+          animate={isCtaInView ? "visible" : "hidden"}
+          variants={containerVariants}
+          className="text-center"
+        >
+          <motion.div 
+            variants={fadeInUp}
+            className="mb-6"
+          >
+            <motion.h3 
+              variants={fadeInUp}
+              className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4"
+            >
               Bereit für ein persönliches Gespräch?
-            </h3>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            </motion.h3>
+            <motion.p 
+              variants={fadeInUp}
+              className="text-gray-600 max-w-2xl mx-auto text-lg"
+            >
               Lernen Sie unser Team persönlich kennen und erfahren Sie, wie wir Ihnen helfen können.
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact">
-              <Button className="bg-gradient-to-r from-trust-green to-trust-green/80 hover:from-trust-green hover:to-trust-green text-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
-                <span className="flex items-center space-x-2">
+            </motion.p>
+          </motion.div>
+          <motion.div 
+            variants={containerVariants}
+            className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto"
+          >
+            <motion.div variants={itemVariants}>
+              <Button 
+                size="lg"
+                className="text-lg px-12 py-6 bg-white text-trust-green hover:bg-trust-green hover:text-white font-semibold border-2 border-trust-green transition-all duration-300 shadow-lg w-full group/btn relative overflow-hidden hover:shadow-xl hover:border-emerald-500"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleLearnMoreClick();
+                }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {/* Animated background on hover */}
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-trust-green via-emerald-500 to-trust-green transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-500 origin-left"></span>
+                
+                {/* Sparkle effect */}
+                <Sparkles className="absolute -left-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white opacity-0 group-hover/btn:opacity-100 group-hover/btn:animate-pulse transition-opacity duration-300" />
+                <Sparkles className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white opacity-0 group-hover/btn:opacity-100 group-hover/btn:animate-pulse transition-opacity duration-300 delay-150" />
+                
+                {/* Button content */}
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  Mehr erfahren
+                  <ArrowRight className="w-5 h-5 transform group-hover/btn:translate-x-2 transition-transform duration-300 group-hover/btn:scale-110" />
+                </span>
+              </Button>
+            </motion.div>
+
+            <motion.div variants={itemVariants}>
+              <Button 
+                size="lg"
+                className="text-lg px-12 py-6 bg-white text-trust-green hover:bg-trust-green hover:text-white font-semibold border-2 border-trust-green transition-all duration-300 shadow-lg w-full group/btn relative overflow-hidden hover:shadow-xl hover:border-emerald-500"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleContactClick();
+                }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {/* Animated background on hover */}
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-trust-green via-emerald-500 to-trust-green transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-500 origin-left"></span>
+                
+                {/* Sparkle effect */}
+                <Sparkles className="absolute -left-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white opacity-0 group-hover/btn:opacity-100 group-hover/btn:animate-pulse transition-opacity duration-300" />
+                <Sparkles className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white opacity-0 group-hover/btn:opacity-100 group-hover/btn:animate-pulse transition-opacity duration-300 delay-150" />
+                
+                {/* Button content */}
+                <span className="relative z-10 flex items-center justify-center gap-2">
                   <Phone className="w-5 h-5" />
-                  <span>Kontakt aufnehmen</span>
+                  Kontakt aufnehmen
+                  <ArrowRight className="w-5 h-5 transform group-hover/btn:translate-x-2 transition-transform duration-300 group-hover/btn:scale-110" />
                 </span>
               </Button>
-            </Link>
-            <Link to="/about">
-              <Button variant="outline" className="border-trust-green text-trust-green hover:bg-trust-green hover:text-white px-8 py-3 rounded-full transition-all duration-300">
-                <span className="flex items-center space-x-2">
-                  <Users className="w-5 h-5" />
-                  <span>Mehr erfahren</span>
-                  <ArrowRight className="w-4 h-4" />
-                </span>
-              </Button>
-            </Link>
-          </div>
-        </div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

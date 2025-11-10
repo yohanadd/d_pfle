@@ -1,17 +1,33 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Quote, Users, Heart, Globe, Clock, Shield } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    // Slightly faster visibility trigger
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 300); // Decreased from 500ms to 300ms
-    
-    return () => clearTimeout(timer);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.3, // Trigger when 30% of the section is visible
+        rootMargin: '-50px 0px -50px 0px' // Adjust trigger point
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
   }, []);
 
   const values = [
@@ -51,13 +67,14 @@ const About = () => {
 
   return (
     <section 
+      ref={sectionRef}
       id="about" 
       className="py-20 bg-gradient-to-b from-slate-50 to-white overflow-hidden relative font-montserrat"
     >
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
-            <div className={`transition-all duration-700 ease-out ${
+            <div className={`transition-all duration-1000 ease-out ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -83,10 +100,10 @@ const About = () => {
               {values.map((value, index) => (
                 <Card 
                   key={index}
-                  className={`${value.borderColor} ${value.bgColor} border-0 shadow-md transition-all duration-600 ease-out ${
+                  className={`${value.borderColor} ${value.bgColor} border-0 shadow-md transition-all duration-800 ease-out ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
-                  style={{ transitionDelay: `${index * 100 + 200}ms` }}
+                  style={{ transitionDelay: `${index * 150 + 300}ms` }}
                 >
                   <CardContent className="p-6">
                     <div className="flex items-center space-x-3 mb-4">
@@ -111,8 +128,8 @@ const About = () => {
             <Card 
               className={`bg-gradient-to-br from-white to-gray-50 border-trust-green/20 border-0 shadow-lg relative overflow-hidden ${
                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
-              } transition-all duration-800 ease-out`}
-              style={{ transitionDelay: '500ms' }}
+              } transition-all duration-1200 ease-out`}
+              style={{ transitionDelay: '800ms' }}
             >
               {/* Top shadow effect */}
               <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-trust-green/20 via-trust-green/10 to-transparent"></div>
